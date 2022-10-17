@@ -12,11 +12,11 @@
 
 网页是用 [github.io](https://pages.github.com/) 做的，具体请看 [这里](https://docs.github.com/en/pages/quickstart). (建议看英文版，中文文档可能过时了.)
 
-用的主题是默认的 [Github](https://theme.typoraio.cn/theme/Github/)，但是略有修改，以后会上传代码.
+用的主题是默认的 [Github](https://theme.typoraio.cn/theme/Github/)，但是略有修改，代码在 [这里](https://github.com/SleepCloudMX/typoraTheme).
 
-为了快速打出数学公式，写了一些 $\LaTeX$ 宏，以后会上传代码.
+为了快速打出数学公式，写了一些 $\LaTeX$ 宏，代码在 [这里](https://github.com/SleepCloudMX/LaTeXmacros).
 
-为了快速打字，用 [AutoHotkey](https://www.autohotkey.com/) 写了一些快捷键，以后会上传代码.
+为了快速打字，用 [AutoHotkey](https://www.autohotkey.com/) 写了一些快捷键，代码在 [这里](https://github.com/SleepCloudMX/AutoHotkey).
 
 
 

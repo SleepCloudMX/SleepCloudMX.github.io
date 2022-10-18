@@ -18,6 +18,8 @@
 
 为了快速打字，用 [AutoHotkey](https://www.autohotkey.com/) 写了一些快捷键，代码在 [这里](https://github.com/SleepCloudMX/AutoHotkey).
 
+另外, 我每天都会写日记 (待办事项 & 每日总结), 也为此写了几个 [程序](https://github.com/SleepCloudMX/SleepCloudMX.github.io/tree/main/Others/Tools), 比如生成日记 & To Do List 的模板.
+
 
 
 如果发现笔记中有什么错误，或者单纯想交流讨论，可以通过邮箱或 QQ 联系我.

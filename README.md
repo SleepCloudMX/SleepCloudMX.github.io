@@ -4,7 +4,9 @@
 
 笔记在不断更新，其中打钩的是已完成的笔记（不排除之后修改的可能）；没打钩的可能是是正在阅读，也可能是~~弃坑~~以后再读；无序列表则表示长期更新.
 
-文件格式基本上都是 PDF，虽然内存大了点，但是方便查阅和下载.
+为了方便查阅和下载，文件格式基本上都是 PDF.
+
+但是 PDF 是静态的, 部分笔记可能会为了实现交互而采用 HTML.
 
 
 
@@ -18,7 +20,7 @@
 
 为了快速打字，用 [AutoHotkey](https://www.autohotkey.com/) 写了一些快捷键，代码在 [这里](https://github.com/SleepCloudMX/AutoHotkey).
 
-另外, 我每天都会写日记 (待办事项 & 每日总结), 也为此写了几个 [程序](https://github.com/SleepCloudMX/SleepCloudMX.github.io/tree/main/Others/Tools), 比如生成日记 & To Do List 的模板.
+另外，我每天都会写日记（待办事项 & 每日总结），也为此写了几个 [程序](https://github.com/SleepCloudMX/SleepCloudMX.github.io/tree/main/Others/Tools)，比如生成日记 & To Do List 的模板.
 
 
 

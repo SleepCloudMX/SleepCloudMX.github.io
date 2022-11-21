@@ -421,7 +421,6 @@ $$
 \\
 \eta(s) \Gamma(s) &= \intoi \dfrac{x^{s-1}}{\e^x + 1} \dx
 \\
-%\displaystyle \eta{\left( s\right)}\Gamma{\left( s\right)}
 &= \int_0^1 \int_0^1 \dfrac{
 	[-\ln(xy)]^{s-2}
 }{1 + xy} \dxdy

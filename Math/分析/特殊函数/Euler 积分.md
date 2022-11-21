@@ -422,10 +422,14 @@ $$
 \eta(s) \Gamma(s) &= \intoi \dfrac{x^{s-1}}{\e^x + 1} \dx
 \\
 %\displaystyle \eta{\left( s\right)}\Gamma{\left( s\right)}
-&=\int_{0}^{1}\int_{0}^{1}\frac{{\left[- \ln{\left( x y\right)}\right]}^{s- 2}}{1+ x y}{\left.\text{d} x\right.}{\left.\text{d} y\right.}
+&= \int_0^1 \int_0^1 \dfrac{
+	[-\ln(xy)]^{s-2}
+}{1 + xy} \dxdy
 \\
 \displaystyle \beta{\left( s\right)}\Gamma{\left( s\right)}
-&=\int_{0}^{1}\int_{0}^{1}\frac{{\left[- \ln{\left( x y\right)}\right]}^{s- 2}}{1+ x^{2} y^{2}}{\left.\text{d} x\right.}{\left.\text{d} y\right.}
+&= \int_0^1 \int_0^1 \dfrac{
+	[-\ln(xy)]^{s-2}
+}{1 + x^2y^2} \dxdy
 \end{align}
 $$
 

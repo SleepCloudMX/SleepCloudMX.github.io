@@ -10,7 +10,20 @@ Euler 积分可以参考我的数分笔记与概统附录. 就不搬过来了.
 
 内容目录:
 
-- [Euler 积分](Euler 积分.html)
+- [Euler 积分](Euler 积分.pdf)
+
+  - Euler 积分的性质与积分上的应用.
+  - 一些变换
+  - 相关公式, 如
+    - 点火公式推广
+    - Gauss-Legendre 倍元公式推广
+    - Rabbe 积分
+    - Dobinski 公式
+
+  - Digamma 函数
+  - Riemann zeta 函数
+  
+- [手写笔记杂项](手写笔记杂项.html)
 
   - Gamma 函数的一种起源, 及其收敛性判断.
 
@@ -94,6 +107,10 @@ Euler 积分可以参考我的数分笔记与概统附录. 就不搬过来了.
   - omega 常数及其性质.
   - 无理性与超越性.
   - Lambert 函数的应用.
+
+- [Bernoulli 多项式](Bernoulli 多项式.html)
+
+- [Euler 多项式](Euler 多项式.html)
 
 
 

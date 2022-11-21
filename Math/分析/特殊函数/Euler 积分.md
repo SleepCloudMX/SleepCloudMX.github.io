@@ -436,11 +436,11 @@ $$
 **函数方程**	(未)
 $$
 \begin{align}
-\displaystyle \zeta{\left( 1- s\right)}
-&=\frac{2}{{\left( 2\pi\right)}^{s}} \cos{\left.\frac{\pi s}{2}\right.}\Gamma{\left( s\right)}\zeta{\left( s\right)},
+\zeta(1 - s) &= \dfrac{2}{(2\pi)^s}
+\cos \dfrac{\pi s}{2} \Gamma(s) \zeta(s)
 \\
-\displaystyle \beta{\left( 1- s\right)}
-&={\left(\frac{2}{n}\right)}^{s} \sin{\left.\frac{\pi s}{2}\right.}\Gamma{\left( s\right)}\beta{\left( s\right)}.
+\beta(1 - s) &= \pqty{\dfrac{2}{n}}^s
+\sin \dfrac{\pi s}{2} \Gamma(s) \beta(s)
 \end{align}
 $$
 ......

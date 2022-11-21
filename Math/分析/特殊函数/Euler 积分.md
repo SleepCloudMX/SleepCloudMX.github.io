@@ -426,7 +426,7 @@ $$
 	[-\ln(xy)]^{s-2}
 }{1 + xy} \dxdy
 \\
-\displaystyle \beta{\left( s\right)}\Gamma{\left( s\right)}
+\beta(s) \Gamma(s)
 &= \int_0^1 \int_0^1 \dfrac{
 	[-\ln(xy)]^{s-2}
 }{1 + x^2y^2} \dxdy

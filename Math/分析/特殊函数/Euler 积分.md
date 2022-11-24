@@ -221,6 +221,35 @@ $$
 
 **Dirichlet 公式**	$ \Beta(p, q) = \dfrac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} $.
 
+**广义 Dirichlet 公式**
+$$
+\begin{align}
+\Beta(\bm \alpha)
+&= \Beta(\soneto{\alpha}{n})
+:= \int \cdots \int
+\prod_{i=1}^n{
+	x_i^{a_i - 1}
+} \dd{\bm x}
+& \pqty{
+	\insum x_i = 1
+}
+\\
+&= \dfrac{
+	\Gamma(\alpha_1) \Gamma(\alpha_2) \cdots \Gamma(\alpha_n)
+}{
+	\Gamma(\splus{\alpha}{n})
+} = \dfrac{
+	\Gamma(\alpha_1) \cdots \Gamma(\alpha_n)
+}{\Gamma(a_0)}
+& \pqty{
+	a_0 = \dsum_{i=1}^n a_n
+}
+\end{align}
+$$
+其中 $d\ (d \in \N^+)$ 维积分域是一个开放的 $d-1$ 维正单纯形, 由顶点 $ (1, 0, \cdots, 0), (0, 1, \cdots, 0), \cdots, (0, 0, \cdots, 1) $ 围成.
+
+---
+
 **点火公式推广**	$ \dint_0^{\tfrac{\pi}{2}} \sin^m x \cos^n x \dx = \dfrac{(m-1)!!(n-1)!!}{(m+n)!!} \cdot s,\quad (m, n \in \N) $, 其中 $m, n$ 都为偶数时, $ s = \dfrac{\pi}{2} $, 否则 $s=1$.
 
 **Wallis 公式**	$ \nlim \dfrac{(2n)!!^2}{(2n-1)!!(2n+1)!!} = \dfrac{\pi}{2} $.
@@ -403,6 +432,12 @@ $$
   } \dx = -\gamma.
   \end{align}
   $$
+
+---
+
+#### 不完全 Euler 积分
+
+#### Gamma 分布, Beta 分布, Dirichlet 分布
 
 ---
 

@@ -1,7 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 using namespace std;
+
+string info[7][12]; // 课程信息
+struct tm t1, t2;
 
 bool isLeapYear(int year)
 {
@@ -29,6 +33,35 @@ int firstDay(int year, int month)
     return days % 7;
 }
 
+void getInfo(char *inputfile)
+{
+    ifstream infile(inputfile);
+    FILE *fp = fopen(inputfile, "r");
+
+    char ch;
+    int day = 0, lesson = 0;
+    bool isMultiline = false;
+    while (fscanf(fp, "%c", &ch) != EOF) {
+        if (ch == '\t') {
+            ++day;
+            isMultiline = false;
+        }
+        else if (ch == '\n' && !isMultiline) {
+            ++lesson;
+            day = 0;
+        }
+        else if (ch == '"') {
+            isMultiline = !isMultiline;
+        }
+        else {
+            info[day][lesson] += ch;
+        }
+    }
+
+    fclose(fp);
+    infile.close();
+}
+
 bool createTemplate(char *filename, int year, int month)
 {
     fstream iofile(filename, ios::in);
@@ -47,8 +80,8 @@ bool createTemplate(char *filename, int year, int month)
 
     //创建表格头部
     iofile << "---\n\n";
-    iofile << "|        日         |        一         |        二         |        三         |        四         |        五         |        六         |" << endl;
-    iofile << "| :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: | :---------------: |" << endl;
+    iofile << "|       日       |       一       |       二       |       三       |       四       |       五       |       六       |" << endl;
+    iofile << "| :------------: | :------------: | :------------: | :------------: | :------------: | :------------: | :------------: |" << endl;
     int days = daysPerMonth(year, month);
     int vacancy = firstDay(year, month);
     int cell = 0, num = 0;
@@ -63,7 +96,7 @@ bool createTemplate(char *filename, int year, int month)
     int today = vacancy;
     while (++num <= days)
     {
-        sprintf(source, "| [%02d](# %02d.%02d %s) ", num, month, num, week[today]);
+        sprintf(source, "| [%02d](# %02d.%02d) ", num, month, num);
         today = (++today) % 7;
         iofile << source;
         if (++cell == 7)
@@ -88,18 +121,43 @@ bool createTemplate(char *filename, int year, int month)
     today = vacancy;
     while (++num <= days)
     {
-        sprintf(source, "\n\n\n## %02d.%02d %s\n\n", month, num, week[today]);
-        today = (++today) % 7;
-
+        sprintf(source, "\n\n\n## %02d.%02d\n\n", month, num);
         iofile << source;
+
+        t2.tm_mday = num;   // 年和月已设置过
+        int deltaDays = difftime(mktime(&t2), mktime(&t1)) / 86400;
+        int termWeek = deltaDays / 7 + 1;
+        sprintf(source, "##### 第 %d 周 %s\n\n", termWeek, week[today]);
+        iofile << source;
+
         iofile << "#### 行路\n\n";
-        iofile << "上午\n\n" << "- [ ] \n\n";
-        iofile << "下午\n\n" << "- [ ] \n\n";
-        iofile << "晚上\n\n" << "- [ ] \n\n";
+        iofile << "上午\n\n";
+        for (int lesson = 0; lesson < 4; ++lesson) {
+            if (info[today][lesson].length() > 0) {
+                iofile << "- [ ] " << info[today][lesson] << "\n\n";
+            }
+        }
+                iofile << "- [ ] \n\n";
+        iofile << "下午\n\n";
+        for (int lesson = 4; lesson < 8; ++lesson) {
+            if (info[today][lesson].length() > 0) {
+                iofile << "- [ ] " << info[today][lesson] << "\n\n";
+            }
+        }
+        iofile << "- [ ] \n\n";
+        iofile << "晚上\n\n";
+        for (int lesson = 8; lesson < 12; ++lesson) {
+            if (info[today][lesson].length() > 0) {
+                iofile << "- [ ] " << info[today][lesson] << "\n\n";
+            }
+        }
+        iofile << "- [ ] \n\n";
         iofile << "#### 环顾\n\n";
         iofile << "上午\n\n" << "- \n\n";
         iofile << "下午\n\n" << "- \n\n";
         iofile << "晚上\n\n" << "- \n\n";
+
+        today = (++today) % 7;
     }
 
     iofile.close();
@@ -109,7 +167,12 @@ bool createTemplate(char *filename, int year, int month)
 int main()
 {
     int year = 2022, month = 8;
-    char filename[64], dirname[48] = R"(E:\Notes\To Do List)";
+    char filename[64], inputfile[64] = "input.txt";
+    char dirname[48] = R"(E:\Notes\To Do List)";
+
+    t1.tm_year = 2022 - 1900;
+    t1.tm_mon = 8 - 1;
+    t1.tm_mday = 28;
 
     while (true)
     {
@@ -136,11 +199,15 @@ int main()
                 cin.clear();
                 cin.ignore(32767, '\n');
             }
-            else
+            else {
+                t2.tm_year = year - 1900;
+                t2.tm_mon = month - 1;
                 break;
+            }
         }
 
         sprintf(filename, "%s\\%d.%02d.md", dirname, year, month);
+        getInfo(inputfile);  // 别忘了这行代码
         if (createTemplate(filename, year, month))
         {
             cout << "创建成功!" << endl;
@@ -152,3 +219,5 @@ int main()
     }
     return 0;
 }
+
+

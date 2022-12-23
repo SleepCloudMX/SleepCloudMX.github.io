@@ -379,9 +379,13 @@
 
 			var Z_o = (A_22 * Z_S + A_12) / (A_21 * Z_S + A_11);
 			var I_2 = U_S / ((A_11 * Z_o + A_12) + (A_21 * Z_o + A_22) * Z_S); // omit minus
-			var P_max = Math.abs(I_2 * I_2 * Z_o);
+			var P_max = I_2 * I_2 * Z_o;
 			document.getElementById("Z_o").innerHTML = Z_o.toFixed(4) + ", &emsp;";
-			document.getElementById("P_max").innerHTML = P_max.toFixed(4) + ".";
+			if (P_max > 0) {
+				document.getElementById("P_max").innerHTML = P_max.toFixed(4) + ".";
+			} else {
+				document.getElementById("P_max").innerHTML = "?";
+			}
 
 			var Z_L = parseFloat(document.getElementById("Z_L").value);
 			if (isNaN(Z_L)) {
@@ -390,13 +394,9 @@
 
 			var Z_i = (A_11 * Z_L + A_12) / (A_21 * Z_L + A_22);
 			var I_L = U_S / ((A_11 * Z_L + A_12) + (A_21 * Z_L + A_22) * Z_S); // omit minus
-			var P_L = I_L * I_L * Z_L;
+			var P_L = Math.abs(I_L * I_L * Z_L);
 			document.getElementById("Z_i").innerHTML = Z_i.toFixed(4) + ", &emsp;";
-			if (P_L > 0) {
-				document.getElementById("P_L").innerHTML = P_L.toFixed(4) + ".";
-			} else {
-				document.getElementById("P_L").innerHTML = "?";
-			}
+			document.getElementById("P_L").innerHTML = P_L.toFixed(4) + ", &emsp;";
 		}
 	</script>
 </div>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>双口网络的参数变换</title>
+</head>
+<body>
+<div align="center">
+	<h3 align="center">双口网络的参数变换</h3>
+	<!-- <p>在任意一个矩阵的输入框中输入数据，即可得到其余参数矩阵.</p> -->
+	<button id="btnReset" onclick="resetInput()" align="left">重置（或按空格）</button>
+	<table>
+		<tr>
+			<td>
+				<p>Y 参数矩阵</p>
+				<table id="Y_matrix">
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" oninput="convertY()" onkeypress="keyPressFun(event)" id="Y_11" size="5" autocomplete="off" name="Y_matrix[0][0]" title="[1,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertY()" onkeypress="keyPressFun(event)" id="Y_12" size="5" autocomplete="off" name="Y_matrix[0][1]" title="[1,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" oninput="convertY()" onkeypress="keyPressFun(event)" id="Y_21" size="5" autocomplete="off" name="Y_matrix[1][0]" title="[2,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertY()" onkeypress="keyPressFun(event)" id="Y_22" size="5" autocomplete="off" name="Y_matrix[1][1]" title="[2,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td>&emsp;&emsp;&emsp;&emsp;</td>
+			<td>
+				<p>Z 参数矩阵</p>
+				<table id="Z_matrix">
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" oninput="convertZ()" onkeypress="keyPressFun(event)" id="Z_11" size="5" autocomplete="off" name="Z_matrix[0][0]" title="[1,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertZ()" onkeypress="keyPressFun(event)" id="Z_12" size="5" autocomplete="off" name="Z_matrix[0][1]" title="[1,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" oninput="convertZ()" onkeypress="keyPressFun(event)" id="Z_21" size="5" autocomplete="off" name="Z_matrix[1][0]" title="[2,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertZ()" onkeypress="keyPressFun(event)" id="Z_22" size="5" autocomplete="off" name="Z_matrix[1][1]" title="[2,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>A 参数矩阵</p>
+				<table id="A_matrix">
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" oninput="convertA()" onkeypress="keyPressFun(event)" id="A_11" size="5" autocomplete="off" name="A_matrix[0][0]" title="[1,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertA()" onkeypress="keyPressFun(event)" id="A_12" size="5" autocomplete="off" name="A_matrix[0][1]" title="[1,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" oninput="convertA()" onkeypress="keyPressFun(event)" id="A_21" size="5" autocomplete="off" name="A_matrix[1][0]" title="[2,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertA()" onkeypress="keyPressFun(event)" id="A_22" size="5" autocomplete="off" name="A_matrix[1][1]" title="[2,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td>&emsp;&emsp;&emsp;&emsp;</td>
+			<td>
+				<p>H 参数矩阵</p>
+				<table id="H_matrix">
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" oninput="convertH()" onkeypress="keyPressFun(event)" id="H_11" size="5" autocomplete="off" name="H_matrix[0][0]" title="[1,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertH()" onkeypress="keyPressFun(event)" id="H_12" size="5" autocomplete="off" name="H_matrix[0][1]" title="[1,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" oninput="convertH()" onkeypress="keyPressFun(event)" id="H_21" size="5" autocomplete="off" name="H_matrix[1][0]" title="[2,1]" class="inputCell" style="text-align:right">
+							</td>
+							<td>
+								<input type="text" oninput="convertH()" onkeypress="keyPressFun(event)" id="H_22" size="5" autocomplete="off" name="H_matrix[1][1]" title="[2,2]" class="inputCell" style="text-align:right">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<p>注意：只能输入实数值，不能输入分数或其它表达式.</p>
+	<i>U</i><SUB>S</SUB>:
+	<input type="text" oninput="calcFeat()" onkeypress="keyPressFun(event)" id="U_S" size="5" autocomplete="off" class="inputCell" style="text-align:right">&emsp;&emsp;
+	<i>Z</i><SUB>S</SUB>:
+	<input type="text" oninput="calcFeat()" onkeypress="keyPressFun(event)" id="Z_S" size="5" autocomplete="off" class="inputCell" style="text-align:right">&emsp;&emsp;
+	<i>Z</i><SUB>L</SUB>:
+	<input type="text" oninput="calcFeat()" onkeypress="keyPressFun(event)" id="Z_L" size="5" autocomplete="off" class="inputCell" style="text-align:right">
+	<p>特性阻抗 (重复阻抗) 与当前功率</p>
+	<i>Z</i><SUB>C1</SUB>=<span id="Z_C1">&emsp;&emsp;&emsp;&emsp;</span>
+	<i>Z</i><SUB>C2</SUB>=<span id="Z_C2">&emsp;&emsp;&emsp;&emsp;</span>
+	<i>P</i><SUB>L</SUB>=<span id="P_L">&emsp;&emsp;&emsp;&emsp;</span>
+	<p>输入阻抗、输出阻抗与最大功率</p>
+	<i>Z</i><SUB>i</SUB>=<span id="Z_i">&emsp;&emsp;&emsp;&emsp;</span>
+	<i>Z</i><SUB>o</SUB>=<span id="Z_o">&emsp;&emsp;&emsp;&emsp;</span>
+	<i>P</i><SUB>max</SUB>=<span id="P_max">&emsp;&emsp;&emsp;&emsp;</span>
+	<script>
+		function convertY() {
+			// 获取输入
+			// 合法的输入如 "123", "123abc456", 这两个都会被识别为浮点数 123.
+			var Y_11 = parseFloat(document.getElementById("Y_11").value);
+			var Y_12 = parseFloat(document.getElementById("Y_12").value);
+			var Y_21 = parseFloat(document.getElementById("Y_21").value);
+			var Y_22 = parseFloat(document.getElementById("Y_22").value);
+			if (isNaN(Y_11) || isNaN(Y_12) || isNaN(Y_21) || isNaN(Y_22)) {
+				return;
+			} // 不考虑非数
+
+			var Delta_Y = Y_11 * Y_22 - Y_12 * Y_21;
+
+			// Y -> Z
+			var Z_11 = Y_22 / Delta_Y;
+			var Z_12 = -Y_12 / Delta_Y;
+			var Z_21 = -Y_21 / Delta_Y;
+			var Z_22 = Y_11 / Delta_Y;
+			document.getElementById("Z_11").value = Z_11.toFixed(4);
+			document.getElementById("Z_12").value = Z_12.toFixed(4);
+			document.getElementById("Z_21").value = Z_21.toFixed(4);
+			document.getElementById("Z_22").value = Z_22.toFixed(4);
+
+			// Y -> A
+			var A_11 = -Y_22 / Y_21;
+			var A_12 = -1 / Y_21;
+			var A_21 = -Delta_Y / Y_21;
+			var A_22 = -Y_11 / Y_21;
+			document.getElementById("A_11").value = A_11.toFixed(4);
+			document.getElementById("A_12").value = A_12.toFixed(4);
+			document.getElementById("A_21").value = A_21.toFixed(4);
+			document.getElementById("A_22").value = A_22.toFixed(4);
+
+			// Y -> H
+			var H_11 = 1 / Y_11;
+			var H_12 = -Y_12 / Y_11;
+			var H_21 = Y_21 / Y_11;
+			var H_22 = Delta_Y / Y_11;
+			document.getElementById("H_11").value = H_11.toFixed(4);
+			document.getElementById("H_12").value = H_12.toFixed(4);
+			document.getElementById("H_21").value = H_21.toFixed(4);
+			document.getElementById("H_22").value = H_22.toFixed(4);
+
+			calcFeat();
+		}
+
+		function convertZ() {
+			// 获取输入
+			var Z_11 = parseFloat(document.getElementById("Z_11").value);
+			var Z_12 = parseFloat(document.getElementById("Z_12").value);
+			var Z_21 = parseFloat(document.getElementById("Z_21").value);
+			var Z_22 = parseFloat(document.getElementById("Z_22").value);
+			if (isNaN(Z_11) || isNaN(Z_12) || isNaN(Z_21) || isNaN(Z_22)) {
+				return;
+			} // 不考虑非数
+
+			var Delta_Z = Z_11 * Z_22 - Z_12 * Z_21;
+
+			// Z -> Y
+			var Y_11 = Z_22 / Delta_Z;
+			var Y_12 = -Z_12 / Delta_Z;
+			var Y_21 = -Z_21 / Delta_Z;
+			var Y_22 = Z_11 / Delta_Z;
+			document.getElementById("Y_11").value = Y_11.toFixed(4);
+			document.getElementById("Y_12").value = Y_12.toFixed(4);
+			document.getElementById("Y_21").value = Y_21.toFixed(4);
+			document.getElementById("Y_22").value = Y_22.toFixed(4);
+
+			// Z -> A
+			var A_11 = Z_11 / Z_21;
+			var A_12 = Delta_Z / Z_21;
+			var A_21 = 1 / Z_21;
+			var A_22 = Z_22 / Z_21;
+			document.getElementById("A_11").value = A_11.toFixed(4);
+			document.getElementById("A_12").value = A_12.toFixed(4);
+			document.getElementById("A_21").value = A_21.toFixed(4);
+			document.getElementById("A_22").value = A_22.toFixed(4);
+
+			// Z -> H
+			var H_11 = Delta_Z / Z_22;
+			var H_12 = Z_12 / Z_22;
+			var H_21 = -Z_21 / Z_22;
+			var H_22 = 1 / Z_22;
+			document.getElementById("H_11").value = H_11.toFixed(4);
+			document.getElementById("H_12").value = H_12.toFixed(4);
+			document.getElementById("H_21").value = H_21.toFixed(4);
+			document.getElementById("H_22").value = H_22.toFixed(4);
+
+			calcFeat();
+		}
+
+		function convertA() {
+			// 获取输入
+			var A_11 = parseFloat(document.getElementById("A_11").value);
+			var A_12 = parseFloat(document.getElementById("A_12").value);
+			var A_21 = parseFloat(document.getElementById("A_21").value);
+			var A_22 = parseFloat(document.getElementById("A_22").value);
+			if (isNaN(A_11) || isNaN(A_12) || isNaN(A_21) || isNaN(A_22)) {
+				return;
+			} // 不考虑非数
+
+			var Delta_A = A_11 * A_22 - A_12 * A_21;
+
+			// A -> Y
+			Y_11 = A_22 / A_12;
+			Y_12 = -Delta_A / A_12;
+			Y_21 = -1 / A_12;
+			Y_22 = A_11 / A_12;
+			document.getElementById("Y_11").value = Y_11.toFixed(4);
+			document.getElementById("Y_12").value = Y_12.toFixed(4);
+			document.getElementById("Y_21").value = Y_21.toFixed(4);
+			document.getElementById("Y_22").value = Y_22.toFixed(4);
+
+			// A -> Z
+			Z_11 = A_11 / A_21;
+			Z_12 = Delta_A / A_21;
+			Z_21 = 1 / A_21;
+			Z_22 = A_22 / A_21;
+			document.getElementById("Z_11").value = Z_11.toFixed(4);
+			document.getElementById("Z_12").value = Z_12.toFixed(4);
+			document.getElementById("Z_21").value = Z_21.toFixed(4);
+			document.getElementById("Z_22").value = Z_22.toFixed(4);
+
+			// A -> H
+			H_11 = A_12 / A_22;
+			H_12 = Delta_A / A_22;
+			H_21 = -1 / A_22;
+			H_22 = A_21 / A_22;
+			document.getElementById("H_11").value = H_11.toFixed(4);
+			document.getElementById("H_12").value = H_12.toFixed(4);
+			document.getElementById("H_21").value = H_21.toFixed(4);
+			document.getElementById("H_22").value = H_22.toFixed(4);
+
+			calcFeat();
+		}
+
+		function convertH() {
+			// 获取输入
+			var H_11 = parseFloat(document.getElementById("H_11").value);
+			var H_12 = parseFloat(document.getElementById("H_12").value);
+			var H_21 = parseFloat(document.getElementById("H_21").value);
+			var H_22 = parseFloat(document.getElementById("H_22").value);
+			if (isNaN(H_11) || isNaN(H_12) || isNaN(H_21) || isNaN(H_22)) {
+				return;
+			} // 不考虑非数
+
+			var Delta_H = H_11 * H_22 - H_12 * H_21;
+
+			// H -> Y
+			Y_11 = 1 / H_11;
+			Y_12 = -H_12 / H_11;
+			Y_21 = H_21 / H_11;
+			Y_22 = Delta_H / H_11;
+			document.getElementById("Y_11").value = Y_11.toFixed(4);
+			document.getElementById("Y_12").value = Y_12.toFixed(4);
+			document.getElementById("Y_21").value = Y_21.toFixed(4);
+			document.getElementById("Y_22").value = Y_22.toFixed(4);
+
+			// H -> Z
+			Z_11 = Delta_H / H_22;
+			Z_12 = H_12 / H_22;
+			Z_21 = -H_21 / H_22;
+			Z_22 = 1 / H_22;
+			document.getElementById("Z_11").value = Z_11.toFixed(4);
+			document.getElementById("Z_12").value = Z_12.toFixed(4);
+			document.getElementById("Z_21").value = Z_21.toFixed(4);
+			document.getElementById("Z_22").value = Z_22.toFixed(4);
+
+			// H -> A
+			A_11 = -Delta_H / H_21;
+			A_12 = -H_11 / H_21;
+			A_21 = -H_22 / H_21;
+			A_22 = -1 / H_21;
+			document.getElementById("A_11").value = A_11.toFixed(4);
+			document.getElementById("A_12").value = A_12.toFixed(4);
+			document.getElementById("A_21").value = A_21.toFixed(4);
+			document.getElementById("A_22").value = A_22.toFixed(4);
+
+			calcFeat();
+		}
+
+		function resetInput() {
+			document.getElementById("Y_11").value = "";
+			document.getElementById("Y_12").value = "";
+			document.getElementById("Y_21").value = "";
+			document.getElementById("Y_22").value = "";
+
+			document.getElementById("Z_11").value = "";
+			document.getElementById("Z_12").value = "";
+			document.getElementById("Z_21").value = "";
+			document.getElementById("Z_22").value = "";
+
+			document.getElementById("A_11").value = "";
+			document.getElementById("A_12").value = "";
+			document.getElementById("A_21").value = "";
+			document.getElementById("A_22").value = "";
+
+			document.getElementById("H_11").value = "";
+			document.getElementById("H_12").value = "";
+			document.getElementById("H_21").value = "";
+			document.getElementById("H_22").value = "";
+
+			document.getElementById("U_S").value = "";
+			document.getElementById("Z_S").value = "";
+			document.getElementById("Z_L").value = "";
+
+			document.getElementById("Z_C1").innerHTML = "&emsp;&emsp;&emsp;&emsp;";
+			document.getElementById("Z_C2").innerHTML = "&emsp;&emsp;&emsp;&emsp;";
+			document.getElementById("P_L").innerHTML = "&emsp;&emsp;&emsp;&emsp;";
+
+			document.getElementById("Z_i").innerHTML = "&emsp;&emsp;&emsp;&emsp;";
+			document.getElementById("Z_o").innerHTML = "&emsp;&emsp;&emsp;&emsp;";
+			document.getElementById("P_max").innerHTML = "&emsp;&emsp;&emsp;&emsp;";
+		}
+
+		function keyPressFun(event) {
+			var x = event.which || event.keyCode;
+			if (x == 32) {
+				resetInput();
+			}
+		}
+
+		function calcFeat() {
+			var A_11 = parseFloat(document.getElementById("A_11").value);
+			var A_12 = parseFloat(document.getElementById("A_12").value);
+			var A_21 = parseFloat(document.getElementById("A_21").value);
+			var A_22 = parseFloat(document.getElementById("A_22").value);
+			if (isNaN(A_11) || isNaN(A_12) || isNaN(A_21) || isNaN(A_22)) {
+				return;
+			} // 不考虑非数
+
+			var Z_C1 = (A_11 * A_12) / (A_21 * A_22);
+			var Z_C2 = (A_22 * A_12) / (A_21 * A_11);
+			if (Z_C1 < 0 || Z_C2 < 0) {
+				Z_C1 = Math.sqrt(-Z_C1).toFixed(4);
+				Z_C2 = Math.sqrt(-Z_C2).toFixed(4);
+				document.getElementById("Z_C1").innerHTML = Z_C1 + "i, &emsp;";
+				document.getElementById("Z_C2").innerHTML = Z_C2 + "i, &emsp;";
+			} else {
+				Z_C1 = Math.sqrt(Z_C1).toFixed(4);
+				Z_C2 = Math.sqrt(Z_C2).toFixed(4);
+				document.getElementById("Z_C1").innerHTML = Z_C1 + ", &emsp;";
+				document.getElementById("Z_C2").innerHTML = Z_C2 + ", &emsp;";
+			}
+
+			var U_S = parseFloat(document.getElementById("U_S").value);
+			var Z_S = parseFloat(document.getElementById("Z_S").value);
+			if (isNaN(U_S) || isNaN(Z_S)) {
+				return;
+			} // 不处理非数
+
+			var Z_o = (A_22 * Z_S + A_12) / (A_21 * Z_S + A_11);
+			var I_2 = U_S / ((A_11 * Z_o + A_12) + (A_21 * Z_o + A_22) * Z_S); // omit minus
+			var P_max = Math.abs(I_2 * I_2 * Z_o);
+			document.getElementById("Z_o").innerHTML = Z_o.toFixed(4) + ", &emsp;";
+			document.getElementById("P_max").innerHTML = P_max.toFixed(4) + ".";
+
+			var Z_L = parseFloat(document.getElementById("Z_L").value);
+			if (isNaN(Z_L)) {
+				return;
+			} // 不处理非数
+
+			var Z_i = (A_11 * Z_L + A_12) / (A_21 * Z_L + A_22);
+			var I_L = U_S / ((A_11 * Z_L + A_12) + (A_21 * Z_L + A_22) * Z_S); // omit minus
+			var P_L = I_L * I_L * Z_L;
+			document.getElementById("Z_i").innerHTML = Z_i.toFixed(4) + ", &emsp;";
+			if (P_L > 0) {
+				document.getElementById("P_L").innerHTML = P_L.toFixed(4) + ".";
+			} else {
+				document.getElementById("P_L").innerHTML = "?";
+			}
+		}
+	</script>
+</div>
+</body>
+</html>

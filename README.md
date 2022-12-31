@@ -1,32 +1,27 @@
-# README
+## 眠云笔记
 
+我对笔记的观点：
 
+1. **自己记笔记**，是为了方便查询与复习，更重要的是总结、归纳与<u>拓展</u>的学习过程；
+2. **电子版笔记**，是为了方便编辑、排版、修改、分类、搜索、保存、携带、分享，以及利用软件和程序实现更多的有趣的功能；
+3. **看别人笔记**，是为了巩固知识点、<u>拓宽</u>知识面，而不应替代教材教辅或个人笔记.
 
-笔记在不断更新，其中打钩的是已完成的笔记（不排除之后修改的可能）；没打钩的可能是是正在阅读，也可能是~~弃坑~~以后再读；无序列表则表示长期更新.
+我的笔记内容：
 
-为了方便查阅和下载，文件格式基本上都是 PDF.
+1. 有的笔记是边看书边记的，大部分都是书中的定理与习题，比较基础；
+2. 有的笔记是边拓展边记的，包含网上搜索的和自己探索的，比较详尽；
+3. 有的笔记是看完书再记的，熟知的部分便已略去了，所以并不完整.
 
-但是 PDF 是静态的, 部分笔记可能会为了实现交互而采用 HTML.
+我的笔记风格：
 
+1. 英文书或英语授课，懒得翻译和切换输入法，就直接用英语记了；
+2. 不引起歧义时，可能为了笔记方便，省去一些表述而显得不够严谨；
+3. 经常会用不同的颜色去强调重点，颜色可能不好看但醒目而且好敲.
 
+记笔记的方式：
 
-我的笔记主要是用 [Typora](https://typoraio.cn/) 记录的，如果想阅读源码，可以在 [这里](https://github.com/SleepCloudMX/SleepCloudMX.github.io) 下载.
+1. 使用 [Typora](https://typoraio.cn/) 记录，不定期上传至 Github；通过 [github.io](https://pages.github.com/) 制作网页，根据需求笔记导出为 PDF 或 HTML.
+2. 为了方便自己排版公式，写了一些 $\LaTeX$ 宏（"方言"），代码在[这里](https://github.com/SleepCloudMX/LaTeX-files/tree/main/Typora%20Macros).
+3. 为了方便打字，以及自动生成一些 HTML 的代码，用 [AutoHotkey](https://www.autohotkey.com/) 写了一些快捷键，代码在[这里](https://github.com/SleepCloudMX/AutoHotkey).
 
-网页是用 [github.io](https://pages.github.com/) 做的，具体请看 [这里](https://docs.github.com/en/pages/quickstart). (建议看英文版，中文文档可能过时了.)
-
-用的主题是默认的 [Github](https://theme.typoraio.cn/theme/Github/)，但是略有修改，代码在 [这里](https://github.com/SleepCloudMX/typoraTheme).
-
-为了快速打出数学公式，写了一些 $\LaTeX$ 宏，代码在 [这里](https://github.com/SleepCloudMX/LaTeXmacros).
-
-为了快速打字，用 [AutoHotkey](https://www.autohotkey.com/) 写了一些快捷键，代码在 [这里](https://github.com/SleepCloudMX/AutoHotkey).
-
-另外，我每天都会写日记（待办事项 & 每日总结），也为此写了几个 [程序](https://github.com/SleepCloudMX/SleepCloudMX.github.io/tree/main/Others/Tools)，比如生成日记 & To Do List 的模板.
-
-
-
-如果发现笔记中有什么错误，或者单纯想交流讨论，可以通过邮箱或 QQ 联系我.
-
-e-mail: 20216161@stu.neu.edu.cn
-
-QQ: 1737484281
-
+最后，如果你发现笔记中有什么错误，或者单纯想交流讨论，可以通过 QQ（1737484281） 联系我.

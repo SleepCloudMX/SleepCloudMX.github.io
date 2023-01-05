@@ -31,6 +31,7 @@ int main() {
             infile.close();
         } else if (n > 0) {
             double a;
+            cout << "请输入 X:" << endl;
             for (int i = 0; i < n; ++i) {
                 cin >> a;
                 x.push_back(a);
@@ -107,6 +108,7 @@ int main() {
             char choice = cin.get();
             if (choice == '\n') {
                 cout << "请输入样本大小: ";
+                break;
             } else if (choice == 'a') {
                 int k = 0;
             cin >> k;

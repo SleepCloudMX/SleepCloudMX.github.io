@@ -599,7 +599,7 @@ $$
 
 ## 2.5	模拟、检验与参数估计
 
-### 2.5.1	Poisson 过程的轨道模拟
+<h3>2.5.1	Poisson 过程的轨道模拟</h3>
 
 下述步骤可得到 $ \Bqty{N(t), t \ge 0} $ 的一条轨道.
 
@@ -608,7 +608,7 @@ $$
 3. 令 $ S_0 = 0, S_n = \knsum X_k $.
 4. 令 $ N(t) = \nosum n I_\Bqty{S_n \le t < S_{n + 1}} $.
 
-### 2.5.2	Poisson 过程的假设检验
+<h3>2.5.2	Poisson 过程的假设检验</h3>
 
 欲检验 $ \Bqty{N(t), t \ge 0} $ 是否为 Poisson 过程, 可以检验下述问题之一:
 
@@ -651,9 +651,9 @@ $$
 \end{align}
 $$
 
-### 2.5.3	Poisson 过程的参数估计
+<h3>2.5.3	Poisson 过程的参数估计</h3>
 
-#### 1	极大似然估计
+<h4>1	极大似然估计</h4>
 
 设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 给定 $T$, 若 $ N(T) = n $ 且 $ S_i = t_i\ (i = 1, 2, \cdots, n) $, 则似然函数为
 $$
@@ -664,7 +664,7 @@ $$
 \hat\lambda = \dfrac{n}{T}.
 $$
 
-#### 2	区间估计
+<h4>2	区间估计</h4>
 
 设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 对于固定的 $n$, 注意到 $ S_n \sim \Gamma(n, \lambda) $, 于是 $ 2\lambda S_n \sim \chi^2_{2n} $.
 
@@ -1236,4 +1236,3 @@ $$
         <iframe src="ifsrc\2.11.5 更新报酬过程.html" height=600></iframe>
     </details>
 </div>
-

@@ -1916,7 +1916,7 @@ $ \dfrac{CO}{AG} = \dfrac{EC}{EA} = \dfrac{CD}{AB} = \dfrac{CF}{FB} = \dfrac{CO}
 $$
 \begin{array}{ccccccccl}
 \dfrac{LM}{AG} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{FM}{FG} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{MH}{GB} \hspace{-0.75em}&\QRA&\hspace{-0.75em} LM \hspace{-0.75em}&=&\hspace{-0.75em} MH \\
-\dfrac{LH}{AI} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{DH}{DG} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{HN}{GB} \hspace{-0.75em}&\QRA&\hspace{-0.75em} LH \hspace{-0.75em}&=&\hspace{-0.75em} HN \\
+\dfrac{LH}{AG} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{DH}{DG} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{HN}{GB} \hspace{-0.75em}&\QRA&\hspace{-0.75em} LH \hspace{-0.75em}&=&\hspace{-0.75em} HN \\
 \dfrac{MH}{GI} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{EH}{EI} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{HN}{IB} \hspace{-0.75em}&\QRA&\hspace{-0.75em} IB \hspace{-0.75em}&=&\hspace{-0.75em} 2IG = \dfrac{1}{3}AB \\
 \dfrac{CJ}{AI} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{EJ}{EI} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{JD}{IB} \hspace{-0.75em}&\QRA&\hspace{-0.75em} JD \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{1}{3}CD \\
 \dfrac{JD}{AK} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{DF}{FA} \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{CD}{AB} \hspace{-0.75em}&\QRA&\hspace{-0.75em} AK \hspace{-0.75em}&=&\hspace{-0.75em} \dfrac{1}{3}AB

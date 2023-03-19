@@ -191,3 +191,81 @@ sgtitle('分解为奇分量和偶分量')
 % 由于会分解出无穷多个正交函数, 不方便全部展示, 也不画了
 ```
 
+
+
+## 第二章
+
+### 2.1	系统响应
+
+```matlab
+% 连续时间系统的响应
+% 以 2 y''(t) + y'(t) + 8 y(t) = f(t) 为例,
+% 其中 f(t) 为冲激信号或阶跃信号.
+% 只有单个元素的矩阵不建议使用方括号.
+subplot 131, impulse(1, [2 1 8]), title('单位冲激信号')
+subplot 132, step(1, [2 1 8]), title('单位阶跃信号')
+
+% 对于 y''(t) + 2 y'(t) + y(t) = f'(t) + 2 f(t),
+% 其中 f(t) = 5 e^(-2 t) u(t), 可以使用如下函数
+t = 0 : 0.01 : 5;
+f = 5 * exp(-2*t);
+subplot 133, lsim([1 2], [1 2 1], f, t), title('一般信号')
+```
+
+### 2.2	函数卷积
+
+同目录下 `sconv.m` 的内容:
+
+```matlab
+function [f, k] = sconv(f1, f2, k1, k2, p, isplot)
+% 计算连续信号的卷积积分 f(t) = f1(t) * f2(t)
+% k1 和 k2 分别是 f1 和 f2 的取样时刻
+% p 为取样时间间隔
+% plot 表示是否绘图
+f = conv(f1, f2);
+k0 = k1(1) + k2(1);
+klen = length(k1) + length(k2) - 2;
+k = k0 : p : (k0 + klen*p);
+
+if nargin == 6 && isplot ~= 0
+    subplot 221, plot(k1, f1), title('f1(t)')
+    subplot 222, plot(k2, f2), title('f2(t)')
+    subplot 223, plot(k, f), title('f(t) = f1(t) * f2(t)')
+    h = get(gca, 'position');
+    h(3) = 2.32 * h(3);
+    set(gca, 'position', h)
+end
+```
+
+具体的实例:
+
+```matlab
+% 连续时间信号的卷积积分
+% 离散的可直接使用 conv(u, v)
+% 连续的可取样后使用上述函数
+
+% 例 2.16: t * I_{0 <= t <= 2} 与自身卷积
+% 这里使用自己编写的 sconv 实现
+p = 0.005;
+k1 = 0 : p : 2;
+f1 = 0.5 * k1;
+[f, k] = sconv(f1, f1, k1, k1, p, true);
+
+% 例 2.17
+% 道理是一样的, 这里就不写了; 不过用 mathematica 写了.
+
+% 例 2.18: I_{-1 <= t <= 1} 和 I_{0 <= t <= 1} 的卷积
+% 这里不用 sconv, 而只使用其中部分代码
+T = 0.01;   % 采样周期
+n1 = -100 : 100;
+f1 = ones(1, length(n1));
+n2 = 0 : 100;
+f2 = ones(1, length(n2));
+y = T * conv(f1, f2);
+n3 = n1(1) + n2(1) : n1(end) + n2(end);
+plot(n3*T, y);
+grid on;
+xlabel('t/s');
+ylabel('y(t)');
+```
+

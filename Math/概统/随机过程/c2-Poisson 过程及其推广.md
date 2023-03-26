@@ -981,7 +981,7 @@ $$
         <iframe src="ifsrc\2.10.3 极限定律3.html" height=550></iframe>
     </details>
 </div>
-**定义**	设 $ \Bqty{X_n, n \ge 1} $ 为随机序列, $T$ 为非负整数随机变量, 若对于 $ \forall n \in \N $, 事件 $ \Bqty{T = n} $ 仅依赖于 $ \soneto{X}{n} $, 而与 $ X_{n + 1}, X_{n + 2} $ 独立, 则称 $T$ 关于 $ \Bqty{X_n, n \ge 1} $ 是 **停时** (Stopping time, 或 Markov time).
+**定义**	设 $ \Bqty{X_n, n \ge 1} $ 为随机序列, $T$ 为非负整数随机变量, 若对于 $ \forall n \in \N $, 事件 $ \Bqty{T = n} $ 仅依赖于 $ \soneto{X}{n} $, 而与 $ X_{n + 1}, X_{n + 2}, \cdots $ 独立, 则称 $T$ 关于 $ \Bqty{X_n, n \ge 1} $ 是 **停时** (Stopping time, 或 Markov time).
 
 **定理 2.10.4 (Wald 等式)**	设 $ \Bqty{X_n, n \ge 1} $ 独立同分布 $X$, 期望 $ \mu = E(X_n) < \infty $, 且 $T$ 关于 $ \Bqty{X_n, n \ge 1} $ 是停时, 期望 $ E(T) < \infty $, 则
 $$
@@ -995,8 +995,6 @@ $$
         <iframe src="ifsrc\2.10.4 Wald 等式.html" height=520></iframe>
     </details>
 </div>
-
-
 ---
 
 **例 1**	若 $ \Bqty{X_n, n \ge 1} $ 独立同 $ B(n_0, p_0) $, 且 $ N \in \N^+ $ 则
@@ -1042,7 +1040,6 @@ $$
         <iframe src="ifsrc\2.10.4 Wald 等式推论.html" height=235></iframe>
     </details>
 </div>
-
 **定理 2.10.5 (基本更新定理)**	
 $$
 \lim_{t \to \infty} \dfrac{m(t)}{t} = \dfrac{1}{\mu}.

@@ -22,9 +22,6 @@ Plot[E^t UnitStep[t], {t, -1, 3}]
 (*
 	UnitStep[t] 是单位阶跃函数;
 	单位阶跃函数的输入可以是向量;
-	HeavisideTheta[t] 也可以表示单位阶跃函数
-	HeavisideLambda[t] 是一个周期的三角分布
-	HeavisidePi[t] 表示矩形脉冲
 *)
 
 (* 1.3 复指数信号 *)
@@ -36,6 +33,17 @@ Plot[Arg[E^((-1 + 10 I) t)], {t, -1, 3}]
 (* 2 正弦 *)
 (* 2.1 正弦信号 *)
 Plot[Sin[2*Pi*t + Pi/6], {t, 0, 2 Pi}]
+
+(* 4.2 单位阶跃信号 *)
+Plot[
+	UnitStep[t], {t, -1, 3},
+	GridLines -> {Automatic, Automatic}
+] (* 绘制网格线 *)
+(* 
+	HeavisideTheta[t] 也可以表示单位阶跃函数
+	HeavisideLambda[t] 是一个周期的三角分布
+	HeavisidePi[t] 表示矩形脉冲
+*)
 
 (*
 	4.3 单位冲激信号
@@ -99,5 +107,28 @@ Plot[%, {t, -2, 2}]
 
 (* 法二: 利用卷积函数 *)
 Plot[Convolve[f[x], f[x], x, t], {t, -2, 2}]
+```
+
+### 2.3	卷积的逆
+
+```mathematica
+(* 离散的傅里叶变换及其逆变换 *)
+x = {1, 1, 2, 2, 1, 1, 0, 0}
+X = Fourier[x]
+InverseFourier[X] (* 可能有误差 *)
+
+(* 连续的傅里叶变换及其逆变换 *)
+F = FourierTransform[Sin[t]/t, t, \[Omega]]
+f = InverseFourierTransform[F, \[Omega], t]
+
+(* 已知 f2 和 f 根据 f = f1 * f2 求 f1 *)
+f1 = UnitStep[t];
+f2 = t UnitStep[t];
+f = Convolve[f1, f2, t, x]
+f1Test = InverseFourierTransform[
+	FourierTransform[f, x, \[Omega]] /
+	FourierTransform[f2, x, \[Omega]],
+	\[Omega], x
+] (* 理论上应该是这样的, 但是实测无法化简 *)
 ```
 

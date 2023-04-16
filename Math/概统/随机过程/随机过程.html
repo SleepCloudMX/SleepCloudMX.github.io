@@ -589,30 +589,11 @@ header, .context-menu, .megamenu-content, footer{
     background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
 }
 
-/**/
-mark {
-    background-color: transparent;
-    color: #0070d9;
-}
-
-blockquote {
-    background-color: #e6e6ff;
-    color: #000000;
-    border-left-color: #554eab;
-}
-
-:root {
-  --sequence-theme: simple
-}
-
-#write .CodeMirror-cursors .CodeMirror-cursor {
-    border-left: 2px solid #f9ae58;
-}
 
 
 </style><title>随机过程</title>
 </head>
 <body class='typora-export os-windows'><div class='typora-export-content'>
-<div id='write'  class=''><h1 align="center">随机过程</h1><p>&nbsp;</p><h3 id='笔记目录'><span>笔记目录</span></h3><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c1-概率论公理化.html'><span>概率论公理化</span></a></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c2-Poisson 过程及其推广.html'><span>Poisson 过程</span></a></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c3-马尔科夫链.html'><span>马尔科夫链</span></a></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c4-离散鞅引论.html'><span>离散鞅引论</span></a></p></li></ul><p>&nbsp;</p><h3 id='参考资料'><span>参考资料</span></h3><ul><li><p><span>《应用随机过程》林元烈.</span></p></li><li><p><span>概率论</span></p><ul><li><p><a href='https://zmx0142857.github.io/note/#math/prob/1'><span>事件与概率 (zmx0142857.github.io)</span></a></p></li></ul></li><li><p><span>Poisson 过程</span></p></li><li><p><span>马尔科夫链</span></p><ul><li><p><a href='https://zhuanlan.zhihu.com/p/141788195'><span>关于时齐马尔科夫链的吸收态的两个重要公式 - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://blog.csdn.net/leida_wt/article/details/107504137'><span>MATLAB马氏链分析工具_matlab asymptotics_leida_wt的博客-CSDN博客</span></a></p></li><li><p><a href='https://www.zhihu.com/question/67585992'><span>为什么喝醉的人可以走回家，喝醉的鸟却不能飞回家？ - 知乎 (zhihu.com)</span></a></p></li></ul></li><li><p><span>离散鞅引论</span></p><ul><li><p><a href='https://zhuanlan.zhihu.com/p/69607174'><span>概率论复习笔记(7)——Kolmogorov大数定律 - 知乎 (zhihu.com)</span></a></p></li></ul></li><li><p><span>还没有参考, 但是先列出来</span></p><ul><li><p><a href='https://hrl.boyuai.com/'><span>动手学强化学习 (boyuai.com)</span></a></p></li><li><p><a href='https://zhuanlan.zhihu.com/p/362706255'><span>方阵的n次幂求解汇总 - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://zhuanlan.zhihu.com/p/347500549'><span>应用随机过程|第3章 马尔科夫链 Markov Chains - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://zhuanlan.zhihu.com/p/604629835'><span>统计力学胎教 #1 随机游走和粒子扩散 - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='http://home.ustc.edu.cn/~richardzheng/math/Probability.pdf'><span>Probability.pdf (ustc.edu.cn)</span></a></p></li><li><p><a href='https://www.zhihu.com/column/c_1286380782685429760'><span>数学爱好者联盟 - 知乎 (zhihu.com)</span></a></p></li></ul></li></ul><p>&nbsp;</p></div></div>
+<div id='write'  class=''><h1 align="center">随机过程</h1><p>&nbsp;</p><h3 id='笔记目录'><span>笔记目录</span></h3><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c1-概率论公理化.html'><span>概率论公理化</span></a></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c2-Poisson 过程及其推广.html'><span>Poisson 过程</span></a></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c3-马尔科夫链.html'><span>马尔科夫链</span></a></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><a href='c4-离散鞅引论.html'><span>离散鞅引论</span></a></p></li></ul><p>&nbsp;</p><h3 id='参考资料'><span>参考资料</span></h3><ul><li><p><span>《应用随机过程》林元烈.</span></p></li><li><p><span>概率论</span></p><ul><li><p><a href='https://zmx0142857.github.io/note/#math/prob/1'><span>事件与概率 (zmx0142857.github.io)</span></a></p></li></ul></li><li><p><span>Poisson 过程</span></p></li><li><p><span>马尔科夫链</span></p><ul><li><p><a href='https://zhuanlan.zhihu.com/p/141788195'><span>关于时齐马尔科夫链的吸收态的两个重要公式 - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://blog.csdn.net/leida_wt/article/details/107504137'><span>MATLAB马氏链分析工具_matlab asymptotics_leida_wt的博客-CSDN博客</span></a></p></li><li><p><a href='https://www.zhihu.com/question/67585992'><span>为什么喝醉的人可以走回家，喝醉的鸟却不能飞回家？ - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://www.zhihu.com/question/443244508'><span>如何证明马尔科夫链一定会达到稳态？ - 知乎 (zhihu.com)</span></a></p></li></ul></li><li><p><span>离散鞅引论</span></p><ul><li><p><a href='https://zhuanlan.zhihu.com/p/69607174'><span>概率论复习笔记(7)——Kolmogorov大数定律 - 知乎 (zhihu.com)</span></a></p></li></ul></li><li><p><span>还没有参考, 但是先列出来</span></p><ul><li><p><a href='https://zhuanlan.zhihu.com/p/362706255'><span>方阵的n次幂求解汇总 - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://zhuanlan.zhihu.com/p/347500549'><span>应用随机过程|第3章 马尔科夫链 Markov Chains - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='https://zhuanlan.zhihu.com/p/604629835'><span>统计力学胎教 #1 随机游走和粒子扩散 - 知乎 (zhihu.com)</span></a></p></li><li><p><a href='http://home.ustc.edu.cn/~richardzheng/math/Probability.pdf'><span>Probability.pdf (ustc.edu.cn)</span></a></p></li><li><p><a href='https://www.zhihu.com/column/c_1286380782685429760'><span>数学爱好者联盟 - 知乎 (zhihu.com)</span></a></p></li></ul></li><li><p><span>强化学习</span></p><ul><li><p><a href='https://hrl.boyuai.com/'><span>动手学强化学习 (boyuai.com)</span></a></p></li><li><p><a href='https://www.davidsilver.uk/teaching/'><span>Teaching - David Silver</span></a></p></li></ul></li></ul></div></div>
 </body>
 </html>

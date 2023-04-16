@@ -266,6 +266,8 @@ $$
 
 ### 2.1  时齐 Poisson 过程
 
+#### 2.1.1  定义与说明
+
 **定义**	若随机过程 $ \Bqty{N(t), t \ge 0} $ 满足以下条件, 则称为 **时齐 Poisson 过程**.
 
 1. 是计数过程, 且 $ N(0) = 0 $.
@@ -293,11 +295,11 @@ $$
 
 - 时齐 (homogeneous) Poisson 过程又称为 Poisson 流, 有时简称为 Poisson 过程或 P.P.
 
-- 若不具有增量平稳性, 则称为非时齐 Poisson 过程; 若不具有增量独立性, 则称为 Poisson 过程.
-
-  <span style="border-left: 4px solid #dfe2e5; padding: 0 15px; color: #777777; padding-right: 0;">这个是从书中后文中看出的, 但是书中有混用, 之后会询问老师具体定义.</span>
+- 若不具有增量平稳性, 则称为非时齐 Poisson 过程; 若不具有增量独立性, 则称为非独立 Poisson 过程.
 
 - $ P\Bqty{N(t + \Delta t) - N(t) = 0} = 1 - \lambda \Delta t - \omicron(\Delta t) = \e^{-\lambda \Delta t} + \omicron(\Delta t) $.
+
+#### 2.1.2  与 Poisson 分布的关系
 
 **定理 2.1.1**	若 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 则
 $$
@@ -328,8 +330,9 @@ $$
 </div>
 
 
-
 ### 2.2  Poisson 过程与指数分布
+
+#### 2.2.1  发生时间的概率分布
 
 对于计数过程 $ \Bqty{N(t), t \ge 0} $, 定义随机变量
 $$
@@ -367,6 +370,8 @@ $$
 
 **备注**	实际上 $ S_n \sim \mathrm{Ga}(n, \lambda) $ ([Gamma 分布](https://sleepcloudmx.github.io/Math/概统/概统附录/概统笔记附录.html#12-伽马分布)).
 
+#### 2.2.2  与指数分布的关系
+
 **定理 2.2.1**	计数过程 $ \Bqty{N(t), t \ge 0} $ 是 Poisson 过程的充要条件是 $ \Bqty{X_n, n \ge 1} $ 独立同分布 $ E(\lambda) $.
 
 <div style="background-color: #f3f2ee">
@@ -383,7 +388,10 @@ I_\Bqty{0 < \ssto{t}{n}{<}}.
 $$
 
 
+
 ### 2.3  剩余寿命与年龄
+
+#### 2.3.1  剩余寿命与年龄及其分布
 
 **定义**	对于计数过程 $ \Bqty{N(t), t \ge 0} $, 定义
 
@@ -412,6 +420,8 @@ $$
         <iframe src="ifsrc\2.3.1 剩余寿命与年龄.html" height=185></iframe>
     </details>
 </div>
+#### 2.3.2  Poisson 过程等价定义
+
 **定理 2.3.2**	对于计数过程, 若非负 r.v. $ X_n\ (n \le 1) $ 独立同分布 $ F(x) $, 则 $ \forall x \ge 0, t \ge 0: $
 $$
 P\Bqty{W(t) > x} = 1 - F(x + t) + \int_0^t P\Bqty{W(t - u) > x} \dd{F(u)}.
@@ -424,7 +434,6 @@ $$
         <iframe src="ifsrc\2.3.2 计数过程的剩余寿命.html" height=600></iframe>
     </details>
 </div>
-
 **定理 2.3.3 (K.L.Chung)**	若 $ \forall t \ge 0 $, 有 $ W(t) $ 与 $ X_n\ (n \ge 1) $ 同分布 $ F(x) $, 且 $ F(0) = 0 $, 则 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程.
 
 <div style="background-color: #f3f2ee">
@@ -434,13 +443,13 @@ $$
         <iframe src="ifsrc\2.3.3 泊松过程的检验方法.html" height=560></iframe>
     </details>
 </div>
-
-
- **备注**	该定理可用于检验 Poisson 过程.
+**备注**	该定理可用于检验 Poisson 过程.
 
 
 
 ### 2.4  到达时间的条件分布
+
+#### 2.4.1  引理与顺序统计量
 
 即给定 $ N(t) = n $ 时, $ \soneto{S}{n} $ 的条件分布.
 
@@ -478,6 +487,8 @@ f(\soneto{y}{n}) = \dfrac{n!}{t^n} I_\Bqty{
 	0 < \ssto{y}{n}{<} \le t
 }.
 $$
+#### 2.4.2  到达时间的条件分布
+
 **定理 2.4.2**	设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 则事件相继发生的时间 $ \soneto{S}{n} $ 在已知 $ N(t) = n $ 下的条件概率密度为
 $$
 f(\soneto{t}{n}) = \dfrac{n!}{t^n} I_\Bqty{
@@ -501,52 +512,13 @@ P\Bqty{
 $$
 则 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程.
 
-**证明**
-
-由定理 2.2.1, 只需证 $ \Bqty{X_n, n \ge 1} $ 独立同分布 $ E(\lambda) $.
-
-再由定理 2.2.3 的证明过程, 只需证对于 $ G(x) = 1 - F(x) $, 有 $ G(x + s) = G(x) G(s) $.
-
-由题意, 注意到
-$$
-P\Bqty{
-	X_1 \ge s \mid N(s + x) = 1
-} + P\Bqty{
-	X_1 \ge x \mid N(s + x) = 1
-} = \dfrac{x}{s + x} + \dfrac{s}{s + x} = 1.
-$$
-利用条件概率与全概率的公式, 得
-$$
-\begin{align}
-P\Bqty{
-	X_1 \ge s \mid N(s + x = 1)
-} &= \dfrac{
-	P\Bqty{X_1 \le s, X_1 \le s + x < X_1 + X_2}
-}{
-	P\Bqty{X_1 \le s + x < X_1 + X_2}
-} \\
-&= \dfrac{
-	\dint_0^s [1 - F(s + x - u)] \dd{F(u)}
-}{
-	\dint_0^{s + x} [1 - F(s + x - u)] \dd{F(u)}
-},
-\end{align}
-$$
-代入前式并化简, 得
-$$
-% \begin{align}
-% \int_0^x [1 - F(s + x - u)] \dd{F(u)} +
-% \int_0^s [1 - F(s + x - u)] \dd{F(u)} =
-% \int_0^{s + x} [1 - F(s + x - u)] \dd{F(u)}
-% \end{align}
-\int_0^s [1 - F(s + x - u)] \dd{F(u)}
-= \int_x^{x + s} [1 - F(s + x - u)] \dd{F(u)},
-\\
-F(s) + F(x) - F(s) F(x) = F(x + s),
-\\
-G(x + s) = G(x) G(s).
-$$
-从而得证.
+<div style="background-color: #f3f2ee">
+    <details>
+        <summary><b>证明
+        </b></summary>
+        <iframe src="ifsrc\2.4.3 Poisson 过程的等价定义.html" height=600></iframe>
+    </details>
+</div>
 
 **定理 2.4.4**	设 $ \Bqty{N(t), t \ge 0} $ 为计数过程, 时间间隔 $ \Bqty{X_n, n \ge 1} $ 独立同分布 $ F(x) $, 且 $ F(0) = 0 $. 若 $ E[X_n] < \infty $, 且
 $$
@@ -557,7 +529,7 @@ $$
 
 **备注**	这是定理 2.4.3 的弱化版本. 利用以上结果, 检验 Poisson 过程时不需要知道参数 $ \lambda $.
 
----
+#### 2.4.3  Poisson 过程的应用
 
 **例 1**	设到达火车站的顾客流遵照参数为 $ \lambda $ 的 Poisson 流 $ \Bqty{N(t), t \ge 0} $, 火车 $t$ 时刻离开车站, 求在 $ [0, t] $ 到达车站的顾客等待时间总和的期望值.
 
@@ -578,8 +550,7 @@ $$
         <iframe src="ifsrc\2.4.4 例2-损失之和-解2.html" height=240></iframe>
     </details>
 </div>
-
----
+#### 2.4.4  到达时间函数的期望
 
 **定理 2.4.5**	设 $ \Bqty{N(t), t \ge 0} $ 是参数为 $ \lambda $ 的 Poisson 过程, $ S_k, k \ge 1 $ 为其到达时刻, 则对任意可积函数 $ f $ 有
 $$
@@ -653,7 +624,7 @@ $$
 
 #### 2.5.3  Poisson 过程的参数估计
 
-##### 1  极大似然估计
+**1  极大似然估计**
 
 设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 给定 $T$, 若 $ N(T) = n $ 且 $ S_i = t_i\ (i = 1, 2, \cdots, n) $, 则似然函数为
 $$
@@ -664,7 +635,7 @@ $$
 \hat\lambda = \dfrac{n}{T}.
 $$
 
-##### 2  区间估计
+**2  区间估计**
 
 设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 对于固定的 $n$, 注意到 $ S_n \sim \Gamma(n, \lambda) $, 于是 $ 2\lambda S_n \sim \chi^2_{2n} $.
 
@@ -683,6 +654,8 @@ $$
 
 
 ### 2.6  非时齐 Poisson 过程
+
+#### 2.6.1  定义与说明
 
 **定义**	若随机过程 $ \Bqty{N(t), t \ge 0} $ 满足以下条件, 则称为 **非时齐 Poisson 过程**,
 
@@ -705,6 +678,8 @@ $$
 - $ P\Bqty{N(t + \Delta t) - N(t) = 0} = 1 - \lambda(t) \Delta t - \omicron(\Delta t) = \e^{-\lambda(t) \Delta t} + \omicron(\Delta t) $.
 - 定义 $ m(t) := \dint_0^t \lambda(s) \ds $.
 
+#### 2.6.2  任意时段的概率分布
+
 **定理 2.6.1**	若 $ \Bqty{N(t), t \ge 0} $ 是非时齐具有强度函数 $ \Bqty{\lambda(t) > 0, t \ge 0} $ 的 Poisson 过程, 则
 $$
 \forall s, t \ge 0, n \in \N:
@@ -721,6 +696,7 @@ $$
         <iframe src="ifsrc\2.6.1 非时齐泊松过程的分布.html" height=600></iframe>
     </details>
 </div>
+#### 2.6.3  时齐与非时齐的转换
 
 **定理 2.6.2**	时齐 Poisson 过程与非时齐 Poisson 过程可如下相互转化:
 
@@ -743,8 +719,6 @@ $$
         <iframe src="ifsrc\2.6.2 时齐与非时齐的相互转化.html" height=600></iframe>
     </details>
 </div>
-
-
 
 
 ### 2.7  复合 Poisson 过程
@@ -807,6 +781,8 @@ $$
 
 ### 2.9  更新过程
 
+#### 2.9.1  定义与说明
+
 **定义**	设取值非负的随机变量 $ \Bqty{X_k, k \ge 1} $ 独立同分布 $ F(x)\ (x \ge 0) $, 且 $ F(0) < 1 $, 令 $ S_n = I_\Bqty{n > 0} \knsum X_k $, 则
 $$
 \Bqty{N(t) = \sup\Bqty{n \mid S_n \le t}, t \ge 0}
@@ -857,6 +833,8 @@ $$
   $$
   <u>因此分布的卷积也满足交换律、结合律与分配律等.</u> 
 
+#### 2.9.2  到达时间概率分布的性质
+
 **定理 2.9.1**	
 $$
 \forall m, n \in \N^+:
@@ -889,6 +867,8 @@ $$
         <iframe src="ifsrc\2.9.2 更新函数的缩放推论.html" height=190></iframe>
     </details>
 </div>
+#### 2.9.3  更新函数与更新方程
+
 **定理 2.9.3**	$ \forall t \ge 0 $, $ m(t) $ 满足下列 **更新方程**:
 $$
 % \forall t \ge 0:
@@ -919,7 +899,7 @@ $$
 
 ### 2.10  若干极限定理与基本更新定理
 
-以下定理是对于更新过程而言的.
+#### 2.10.1  更新过程的极限定理
 
 **定理 2.10.1**	
 $$
@@ -981,6 +961,8 @@ $$
         <iframe src="ifsrc\2.10.3 极限定律3.html" height=550></iframe>
     </details>
 </div>
+#### 2.10.2  Markov 停时与 Wald 等式
+
 **定义**	设 $ \Bqty{X_n, n \ge 1} $ 为随机序列, $T$ 为非负整数随机变量, 若对于 $ \forall n \in \N $, 事件 $ \Bqty{T = n} $ 仅依赖于 $ \soneto{X}{n} $, 而与 $ X_{n + 1}, X_{n + 2}, \cdots $ 独立, 则称 $T$ 关于 $ \Bqty{X_n, n \ge 1} $ 是 **停时** (Stopping time, 或 Markov time).
 
 **定理 2.10.4 (Wald 等式)**	设 $ \Bqty{X_n, n \ge 1} $ 独立同分布 $X$, 期望 $ \mu = E(X_n) < \infty $, 且 $T$ 关于 $ \Bqty{X_n, n \ge 1} $ 是停时, 期望 $ E(T) < \infty $, 则
@@ -1040,6 +1022,8 @@ $$
         <iframe src="ifsrc\2.10.4 Wald 等式推论.html" height=235></iframe>
     </details>
 </div>
+#### 2.10.3  基本更新定理
+
 **定理 2.10.5 (基本更新定理)**	
 $$
 \lim_{t \to \infty} \dfrac{m(t)}{t} = \dfrac{1}{\mu}.
@@ -1054,6 +1038,8 @@ $$
 
 
 ### 2.11  更新方程与关键更新定理
+
+#### 2.11.1  更新方程及其定理
 
 **定义**	设已知函数 $ a(t) $ 与分布函数 $ F(t) $, 若未知函数 $ A(t) $ 满足以下积分方程,
 $$
@@ -1085,6 +1071,8 @@ $$
         <iframe src="ifsrc\2.11.1 更新方程的解.html" height=600></iframe>
     </details>
 </div>
+#### 2.11.2  Blackwill 定理
+
 **定义**	非负随机变量 $X$ 称为是 **格点的** (Lattice), 如果
 $$
 \exist d \ge 0:
@@ -1122,6 +1110,8 @@ $$
 	m((n + 1) d) - m(nd)
 } = \dfrac{d}{\mu}.
 $$
+
+#### 2.11.3  关键更新定理
 
 **定义**	设 $ h $ 是定义在 $ \bpqty{0, +\infty} $ 上的函数, 令
 $$
@@ -1185,6 +1175,8 @@ $$
         <iframe src="ifsrc\2.11.3 推论 1.html" height=580></iframe>
     </details>
 </div>
+#### 2.11.4  交错更新过程
+
 **定义**	设随机向量序列 $ \Bqty{(Z_n, Y_n), n \ge 1} $ 独立同分布, 即 $ Z_n $ i.i.d. $ Z $, $ Y_n $ i.i.d. $ Y $, 且二者不一定独立. 记 $ X_n = Z_n + Y_n $, $ S_0= 0 $, $ S_n= \insum X_i $, $ N(t) = \sup\Bqty{n \in \N \mid S_n \le t} $, 则 $ \Bqty{N(t), t \ge 0} $ 为更新过程. 记
 $$
 \zeta_t = \begin{cases}
@@ -1211,6 +1203,8 @@ $$
         <iframe src="ifsrc\2.11.4 交错更新过程的概率极限.html" height=630></iframe>
     </details>
 </div>
+#### 2.11.5  更新报酬过程
+
 **定义**	设更新过程 $ \Bqty{N(t), t \ge 0} $ 的时间间隔 $ X_n\ (n \ge 1) $ 分布为 $F$, 每当一次更新发生时, 得到一个报酬 $ R_n \le 0 $, 且 $ \Bqty{R_n, n \ge 1} $ 独立同分布. 并设 $ \Bqty{(X_n, R_n), n \ge 1} $ 独立同分布, 其中 $ R_n $ 可以依赖于 $ X_n $. 则
 $$
 \Bqty{

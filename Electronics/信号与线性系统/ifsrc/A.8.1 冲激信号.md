@@ -8,9 +8,11 @@
 
 3. 由微分性质 $ t^n f(t) \rla \j^n F^{(n)}(\omega) $ 即得.
 
-   右式可以由对称性质得到. (合理吗? 当 $ k = 0 $ 时就是 2.2 式)
+   右式可以由对称性质得到.
 
-   实际上, 由 $ f^{(n)}(t) \rla (\j\omega)^n F(\omega) $, 我们还有
+   另外, 由 $ f^{(n)}(t) \rla (\j\omega)^n F(\omega) $ 和 $ t^{n-k} \rla \dfrac{2\pi \j^n (-1)^k}{(n)_{(k)}} \omega^k \delta^{(n)}(\omega) $, 还可推出直流信号傅里叶变换的多种表达式.
+
+   实际上,
    $$
    % 设置
    \newcommand{\aneg}[1]{\hspace{-0.75em}&#1&\hspace{-0.75em}}
@@ -279,19 +281,9 @@
    
    
    
-   \forall n, k \in \N \colon
-   1 \rla
-   % \dfrac{
-   % 	2\pi \j^{n - k} (\j\omega)^n
-   % }{
-   % 	n! (n+k)_{(k)}
-   % } \omega^k \delta^{(n + k)}(\omega)
-   % =
-   \dfrac{
-   	2\pi \j^{2n - k}
-   }{
-   	n! (n + k)_{(k)}
-   } \omega^{n + k} \delta^{(n + k)}(\omega).
+   
+   
+   \forall n \in \N \colon \delta^{(n)}(t) = \dfrac{n!}{(-1)^n} \delta(t).
    $$
 
 4. 思路一: $ \delta_{T_0}(t) = \nsuminf \delta(t - n T_0) \rla \nsuminf \e^{-\j\omega n T_0} $.

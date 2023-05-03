@@ -293,11 +293,12 @@ $$
 
 **备注**
 
-- 时齐 (homogeneous) Poisson 过程又称为 Poisson 流, 有时简称为 Poisson 过程或 P.P.
-
-- 若不具有增量平稳性, 则称为非时齐 Poisson 过程; 若不具有增量独立性, 则称为非独立 Poisson 过程.
-
 - $ P\Bqty{N(t + \Delta t) - N(t) = 0} = 1 - \lambda \Delta t - \omicron(\Delta t) = \e^{-\lambda \Delta t} + \omicron(\Delta t) $.
+
+- 时齐 Poisson 过程常简称为 Poisson 过程或 Poisson 流, 缩写为 P.P.
+- 若不满足增量平稳性, 则称为非时齐 Poisson 过程.
+- 若不满足增量独立性, 则称为非独立 Poisson 过程.
+- Bernoulli 过程是 Markov 链, Poisson 过程是连续参数 Markov 过程.
 
 #### 2.1.2  与 Poisson 分布的关系
 
@@ -550,7 +551,7 @@ $$
         <iframe src="ifsrc\2.4.4 例2-损失之和-解2.html" height=240></iframe>
     </details>
 </div>
-#### 2.4.4  到达时间函数的期望
+#### 2.4.4  到达时间的函数期望
 
 **定理 2.4.5**	设 $ \Bqty{N(t), t \ge 0} $ 是参数为 $ \lambda $ 的 Poisson 过程, $ S_k, k \ge 1 $ 为其到达时刻, 则对任意可积函数 $ f $ 有
 $$
@@ -586,7 +587,7 @@ $$
 1. 检验 $ \Bqty{X_n, n \ge 1} $ 是否独立同指数分布 $ E(\lambda) $.
 2. $ \forall t > 0 $, 检验 $ W(t) $ 与 $ X_n (n \ge 1) $ 是否同分布.
 3. $ \forall t > 0 $, 检验在 $ N(t) = 1 $ 时是否有 $ S_1 \sim R(0, t) $.
-4. 给定 $ T > 0 $, 检验在 $ N(T) = n $ 下是否有 $ (\soneto{S}{n}) \sim R(0, T)^n $.
+4. 给定 $ T > 0 $, 检验在 $ N(T) = n $ 下是否有 $ (\soneto{S}{n}) \sim R(0, T)^n $ 的次序统计量.
 
 ---
 
@@ -637,7 +638,7 @@ $$
 
 **2  区间估计**
 
-设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 对于固定的 $n$, 注意到 $ S_n \sim \Gamma(n, \lambda) $, 于是 $ 2\lambda S_n \sim \chi^2_{2n} $.
+设 $ \Bqty{N(t), t \ge 0} $ 为 Poisson 过程, 对于固定的 $n$, 注意到 $ S_n \sim \mathrm{Ga}(n, \lambda) $, 于是 $ 2\lambda S_n \sim \chi^2_{2n} $.
 
 从而得到 $ \lambda $ 的置信度为 $ 1 - \alpha $ 的区间估计为
 $$

@@ -124,6 +124,8 @@ axis([-16, 16, -1.5, 1.5])
 grid on
 ```
 
+
+
 ### 1.2	信号变换
 
 ```matlab
@@ -145,6 +147,8 @@ subplot 324, fplot(f4), title('-f1(-t) - f1(t)')
 subplot 325, fplot(f5), title('f2(t) * f3(t)')
 subplot 326, fplot(f6), title('f1(t) * f2(t)')
 ```
+
+
 
 ### 1.3	信号分解
 
@@ -211,6 +215,8 @@ t = 0 : 0.01 : 5;
 f = 5 * exp(-2*t);
 subplot 133, lsim([1 2], [1 2 1], f, t), title('一般信号')
 ```
+
+
 
 ### 2.2	函数卷积
 
@@ -279,8 +285,8 @@ ylabel('y(t)');
 % 3.1 周期信号的频谱
 
 % 例 3.13: 周期矩形脉冲信号的双边频谱
-syms t n        % T 和 A 不需要用 syms 声明, 因为下面直接赋值了
-T = 4; A = 1;   % tau = 1; 没有用到就注释了
+syms t n        % T, A 和 tau 不需要用 syms 声明, 因为下面直接赋值了
+T = 4; A = 1; tau = 1;
 
 f = A * exp(-1j * 2*n*pi/T * t);    % 计算傅里叶级数时乘的函数
 fn = int(f, t, -tau/2, tau/2) / T;  % 指数形式的傅里叶系数
@@ -312,6 +318,8 @@ xlabel('\omega/\omega_0'); ylabel('C_n 的相位');
 
 ```
 
+
+
 ### 3.2  非周期信号的频谱
 
 ```matlab
@@ -342,12 +350,16 @@ xlabel('w'), ylabel('F(w)'), title('傅里叶变换 F(w)');
 
 ```
 
+
+
 ### 3.3  傅里叶变换的性质
+
+
 
 ### 3.4  信号的采样过程
 
 ```matlab
-% 4 信号的采样过程
+% 3.4 信号的采样过程
 % 例 3.19: 三角波的采样过程
 syms t w f
 f = (1 - 2*abs(t)) * exp(-1j * w * t);  % 被积函数
@@ -369,6 +381,8 @@ for k = -2 : 2
 end
 
 ```
+
+
 
 ### 3.5  系统的频率特性
 
@@ -398,4 +412,303 @@ subplot 212, plot(w, angle(H)), title('相频特性'), grid on;
 xlabel('\omega(rad/s)'), ylabel('\phi(\omega)');
 
 ```
+
+
+
+## 第 4 章  连续复频域分析
+
+### 4.0  复频域常用函数
+
+| 函数    | 功能               | 函数     | 功能                 |
+| ------- | ------------------ | -------- | -------------------- |
+| laplace | 拉氏变换           | ilaplace | 拉氏逆变换           |
+| residue | 部分分式展开法     | zero     | 计算系统的零点       |
+| pole    | 计算系统的极点     | pzmap    | 绘制零极点图         |
+| zp2tf   | 零极点 -> 系统函数 | tf2zp    | 系统函数 -> 零、极点 |
+| freqs   | 计算频率响应特性   | pause    | 暂停运行             |
+
+
+
+### 4.1  拉普拉斯变换
+
+```matlab
+% 4.1 拉普拉斯变换
+% 例 4.27：两个信号的拉普拉斯变换
+syms t w
+% (1)
+f1 = exp(-t) * cos(w*t);
+F1 = laplace(f1);
+% (2)
+f2 = 3 * exp(-2*t);
+F2 = laplace(f2);
+
+
+
+% 例 4.28：绘制拉普拉斯变换的图形
+syms t s
+f = sin(t) * heaviside(t);
+F = laplace(f);
+% 得出 F = 1 / (s^2 + 1）
+
+% 以下绘图代码可单独运行
+% 绘制方法一：符号数学方法绘图
+syms s x y
+s = x + 1i*y;       % 虚数单位建议写为 1i 而非 i
+Fs = 1 / (s^2+1);   % 注意这里要重新赋值为复变函数，因为要令 s = x + 1i * y
+subplot 121, fmesh(abs(Fs));      % 网格曲面图；不建议使用 ezmesh()
+subplot 122, fsurf(abs(Fs));      % 三维曲面图；不建议使用 ezsurf()
+colormap(hsv);      % 设置图形中多条曲线的颜色顺序
+
+% 绘制方法二：数值方法绘图
+figure(2)
+x1 = -5 : 0.1 : 5;
+y1 = -5 : 0.1 : 5;
+[x, y] = meshgrid(x1, y1);  % 产生网格矩阵 x, y
+s = x + 1i*y;
+Fs = 1 ./ (s.*s + 1);
+subplot 121, mesh(x, y, abs(Fs));
+subplot 122, surf(x, y, abs(Fs));
+axis([-5, 5, -5, 5, 0, 8]);
+colormap(hsv);
+
+```
+
+
+
+### 4.2  与傅氏变换关系
+
+```matlab
+% 4.2 傅氏变换与拉氏变换的关系
+% 例 4.29 法一：符号绘图
+clf;    % clear figure
+syms x y s
+s = x + 1i*y;
+Fs = 1 ./ ((s+1)^2 + 1);
+
+subplot 231, fmesh(abs(Fs));
+view(-60, 20);  % 调整观察视角
+axis([0, 5, -20, 20, 0, 0.5]);
+title('拉氏变换网格图')
+
+subplot 232, fsurf(abs(Fs));
+view(-60, 20);  % 调整观察视角
+axis([0, 5, -20, 20, 0, 0.5]);
+title('拉氏变换曲面图')
+colormap(hsv);
+
+syms w
+Fw = 1 ./ ((1i*w + 1)^2 + 1);
+subplot 233, fplot(abs(Fw), [-20, 20]);
+xlabel('频率 w')
+title('傅氏变换幅频曲线')
+
+
+
+% 例 4.29 法二：数值绘图
+x1 = 0 : 0.1 : 5;
+y1 = -20 : 0.1 : 20;
+[x, y] = meshgrid(x1, y1);
+s = x + 1i*y;
+Fs = 1 ./ ((s+1).^2 + 1);
+
+subplot 234, mesh(x, y, abs(Fs));
+view(-60, 20);  % 调整观察视角
+axis([0, 5, -20, 20, 0, 0.5]);
+title('拉氏变换网格图')
+
+subplot 235, surf(x, y, abs(Fs));
+view(-60, 20);  % 调整观察视角
+axis([0, 5, -20, 20, 0, 0.5]);
+title('拉氏变换曲面图')
+colormap(hsv);
+
+w = -20 : 0.1 : 20;
+Fw = 1 ./ ((1i*w + 1).^2 + 1);
+subplot 236, plot(w, abs(Fw));
+xlabel('频率 w')
+title('傅氏变换幅频曲线')
+
+```
+
+
+
+### 4.3  拉普拉斯逆变换
+
+```matlab
+% 4.3 拉普拉斯逆变换
+% 例 4.30：利用部分分式法进行拉普拉斯逆变换
+a = conv([1, 0], [1, 1]);   % 分母的多项式系数
+b = conv([1, 1], [1, 1]);   % 分子的多项式系数
+den = conv(a, b);
+[r, p] = residue([1, -2], den);
+
+% 例 4.31：利用内置函数直接求拉普拉斯逆变换
+syms s
+% (1)
+F1 = (2*s + 1) / (s^2 + 7*s + 10);
+f1 = ilaplace(F1);
+% (2)
+F2 = s^2 / (s^2 + 3*s + 2);
+f2 = ilaplace(F2);
+
+```
+
+
+
+### 4.4  系统函数零极点图
+
+```matlab
+% 4.4 系统函数的零、极点图
+% 例 4.32：绘制零、极点图
+b = [1, -1];
+a = [1, 2, 2];
+zs = roots(b);  % zeros
+ps = roots(a);  % poles
+plot(real(zs), imag(zs), 'o'); hold on;
+plot(real(ps), imag(ps), 'rx', 'markersize', 12);
+axis([-2, 2, -2, 2]); grid on;
+legend('零点', '极点')
+
+% 第五次翻转课堂练习题 2.6
+z_real = [0, 1, 1];
+z_imag = [0, -1, 1];
+p_real = [-1, -1, 0, 0];
+p_imag = [0, 0, -2, 2];
+plot(z_real, z_imag, 'o'); hold on;
+plot(p_real, p_imag, 'rx', 'markersize', 12);
+axis([-3, 3, -3, 3]);
+grid on;
+legend('零点', '极点')
+
+% 零极点的另一种画法：
+H = tf([2 5 1], [1 3 5]);
+pzmap(H)
+grid on
+
+pzmap(sys(:,:,1),'r',sys(:,:,2),'g',sys(:,:,3),'b')
+sgrid
+
+sys = tf([4.2,0.25,-0.004],[1,9.6,17]);
+[p,z] = pzmap(sys);
+plot(real(z), imag(z), 'o'); hold on;
+plot(real(p), imag(p), 'rx', 'markersize', 12);
+
+```
+
+
+
+### 4.5  系统的复频域分析
+
+```matlab
+% 4.5 复频域分析
+% 例 4.33：冲激响应的时域波形
+% 备注：与微分算子、傅里叶变换那里的冲激响应使用函数相同
+a = [1, 1, 16.25];
+b = 1;  % 等价于 [1]
+impulse(b, a, 5);
+title('Impulse Response');
+xlabel('Time');
+ylabel('Amplitude');
+
+
+
+% 例 4.34：零输入响应、零状态响应、全响应
+% 首先对微分方程两端使用拉普拉斯变换，代入初值条件后化简，
+syms t s
+Yzi  = (3*s + 13) / (s^2 + 3*s + 2);    % 复频域 - 零输入响应
+yzi = ilaplace(Yzi);                    % 时域 - 零输入响应
+
+ft = 4 * exp(-2*t) * heaviside(t);      % 时域 - 激励信号
+Fs = laplace(ft);                       % 复频域 - 激励信号
+
+Yzs = Fs / (s^2 + 3*s + 2);             % 复频域 - 零状态响应
+yzs = ilaplace(Yzs);                    % 时域 - 零状态响应
+
+yt = simplify(yzi + yzs);               % 时域 - 全响应
+
+
+
+% 例 4.35：给定电路，用拉普拉斯变换求电流响应
+sys = tf(1, [0.1, 0.1]);    % 系统函数 H(s)
+t = [0 : 0.01 : 10]';       % 抽样时间
+e = sin(3*t);               % 激励信号
+i = lsim(sys, e, t);        % 仿真电流信号
+plot(t, e, '-.', t, i);     % 绘制激励和电流
+xlabel('Time (sec)');
+axis([0, 10, -4, 6]);
+legend('e(t)', 'i(t)');
+
+```
+
+
+
+### 4.6  系统的频率响应图
+
+```matlab
+% 4.6 频率响应
+% 例 4.36：系统函数的幅频特性和相频特性
+b = 1;                  % 分子系数
+a = [1, 0.4, 0.08];     % 分母系数
+w = linspace(-pi, pi);  % 书中的 2*pi<512 疑似打错
+h = freqs(b, a, w);         % 频率响应
+subplot 211, plot(w, abs(h));    % 幅频特性曲线
+subplot 212, plot(w, angle(h));  % 相频特性曲线
+
+% 例 4.37：根据零极点分布画出幅频特性曲线
+data = struct(...
+    'title', {'(a)', '(b)', '(c)', '(d)'}, ...                  % 四个系统
+    'zeros', {[], [0; 0], [-0.5], [1.2j; -1.2j]}, ...           % 零点坐标
+    'poles', {[-2; -1], [-2, -1], [-2; -1], [-1+1j; -1-1j]}...  % 极点坐标
+);  % 为绘图方便起见，使用结构体
+omega = [0 : 0.01 : 6];     % 频率抽样点
+
+for id = 1 : 4
+    [b, a] = zp2tf(data(id).zeros, data(id).poles, 1);  % 零极点 -> 系统函数
+    H = freqs(b, a, omega);                             % 指定频率点的响应
+    subplot(2, 2, id), plot(omega, abs(H)), axis tight; % 绘制幅频特性曲线
+    set(gca, 'YScale', 'log', 'FontSize', 16);          % 设置纵轴对数刻度
+    title(data(id).title), xlabel('\omega'), ylabel('H(\omega)');
+end
+
+```
+
+
+
+
+
+
+
+第 5 章  离散时域分析
+
+5.1  离散时间信号的图像
+
+5.2  离散时间信号的运算
+
+5.3  系统的单位样值响应
+
+5.4  离散时间序列的卷积
+
+5.5  离散时间系统的响应
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

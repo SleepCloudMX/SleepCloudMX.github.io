@@ -132,6 +132,36 @@ f1Test = InverseFourierTransform[
 ] (* 理论上应该是这样的, 但是实测无法化简 *)
 ```
 
+### 2.4  可视化卷积
+
+```mathematica
+DynamicModule[{f, g, h},
+ f[x_] := UnitBox[x/2];
+ g[x_] := UnitBox[x];
+ h[y_] = Convolve[f[x], g[x], x, y];
+ Manipulate[
+  GraphicsRow[{
+    Plot[{f[x], g[y - x]}, {x, -5/2, 5/2}, Sequence[
+     Filling -> Axis, PlotRange -> {-1, 1.5}, Exclusions -> None, 
+      Ticks -> {Automatic, {0, 1}}, AxesLabel -> Automatic, 
+      PlotLabel -> Style["f(x), g(y-x)", Italic], Epilog -> {
+Arrowheads[Small], 
+Arrow[{{y, -0.75}, {y, -0.1}}], 
+Text[
+Style["y", Italic], {y + 0.4, -0.75}]}]],
+    Plot[f[x] g[y - x], {x, -5/2, 5/2}, Sequence[
+     Filling -> Axis, PlotRange -> {-1, 1.5}, Exclusions -> None, 
+      Ticks -> {Automatic, {0, 1}}, AxesLabel -> Automatic, 
+      PlotLabel -> Style["f(x)\[CenterDot]g(y-x)", Italic]]],
+    Plot[h[x], {x, -5/2, y}, Sequence[
+     Filling -> Axis, PlotRange -> {{-(5/2), 5/2}, {-1, 1.5}}, 
+      Ticks -> {Automatic, {0, 1}}, AxesLabel -> {
+Style["y", Italic], None}, PlotLabel -> Style["(f*g)(y)", Italic]]]}, 
+   ImageSize -> 480], {{y, -0.8, Style["y", Italic]}, -2, 2}]]
+```
+
+
+
 
 
 ## 第 3 章  连续频域分析
@@ -307,4 +337,108 @@ H = (10 I \[Omega] + 5)/(
 Plot[Abs[H], {\[Omega], -8, 8}, GridLines -> Automatic]
 Plot[Arg[H], {\[Omega], -8, 8}, GridLines -> Automatic]
 ```
+
+
+
+## 第 4 章  连续复频域分析
+
+> 平时一直用的 mathematica，这里就不再写代码了.
+
+### 4.0  复频域常用函数
+
+### 4.1  拉普拉斯变换
+
+### 4.2  与傅氏变换关系
+
+### 4.3  拉普拉斯逆变换
+
+### 4.4  系统函数零极点图
+
+### 4.5  系统的复频域分析
+
+### 4.6  系统的频率响应图
+
+
+
+## 第 5 章  离散时域分析
+
+### 5.1  常用函数与功能
+
+#### 5.1.1  离散时间序列的绘图
+
+```mathematica
+DiscretePlot[DiscreteDelta[n - 1], {n, -2, 2}]
+```
+
+
+
+#### 5.1.2  离散序列卷积和的求解
+
+```mathematica
+x[t_] := Switch[t,
+  0, 1,
+  1, 0,
+  2, 3,
+  Default, 0
+];
+
+y[t_] := Switch[t,
+  0, 1,
+  1, -2,
+  Default, 0
+];
+
+result = DiscreteConvolve[x[m], y[m], m, n];
+Table[result /. n -> i, {i, 0, 3}]
+```
+
+
+
+#### 5.1.3  卷积求解过程的图像绘制
+
+```mathematica
+f[n_] := UnitBox[n/7];
+g[n_] := 2 UnitBox[n/3 + 1];
+GraphicsRow@
+ Table[DiscretePlot[{f[x], g[x - i]}, {x, -10, 10}, ImageSize -> 110, 
+   Ticks -> None, PlotRange -> All], {i, -1, 2}]
+```
+
+
+
+#### 5.1.4  十分有趣的交互式动画
+
+```mathematica
+DynamicModule[{f, g, h},
+ f[n_] := (3/4)^n UnitStep[n];
+ g[n_] := UnitBox[n/5];
+ h[n_] = DiscreteConvolve[f[m], g[m], m, n];
+ Manipulate[
+  GraphicsRow[{DiscretePlot[{f[m], g[n - m]}, {m, -5, 12}, Sequence[
+     PlotRange -> {-1, 1.5}, Ticks -> {Automatic, {0, 1}}, 
+      AxesLabel -> Automatic, PlotStyle -> PointSize[0.04], 
+      PlotLabel -> Text[
+Style["f[m], g[n-m]", Italic]], Epilog -> {
+Arrowheads[Medium], 
+Arrow[{{n, -1}, {n, -0.1}}], 
+Text[
+Style["n", Italic], {n + 1.5, -0.9}]}]],
+    DiscretePlot[f[m] g[n - m], {m, -5, 12}, Sequence[
+     PlotRange -> {-1, 1.5}, Ticks -> {Automatic, {0, 1}}, 
+      AxesLabel -> Automatic, PlotStyle -> PointSize[0.04], 
+      PlotLabel -> Text[
+Style["f[m]\[CenterDot]g[n-m]", Italic]]]],
+    DiscretePlot[h[m], {m, -5, n}, Sequence[
+     PlotRange -> {{-5, 12}, {-1, 4}}, Ticks -> {Automatic, {0, 2, 4}},
+       AxesLabel -> {
+Text[
+Style["n", Italic]], None}, PlotStyle -> PointSize[0.04], 
+      PlotLabel -> Text[
+Style["(f*g)[n]", Italic]]]]}, ImageSize -> 480], {{n, 1}, -4, 11, 
+   1}]]
+```
+
+
+
+
 

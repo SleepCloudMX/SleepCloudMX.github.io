@@ -678,17 +678,154 @@ end
 
 
 
-第 5 章  离散时域分析
+## 第 5 章  离散时域分析
 
-5.1  离散时间信号的图像
+### 5.1  离散时间信号的图像
 
-5.2  离散时间信号的运算
+```matlab
+% 5.1 离散时间信号的图像
+% 例 5.11：单边指数序列的波形图
+n = 0 : 10;
+a1 = 1.3;   x1 = a1.^n;
+a2 = -1.3;  x2 = a2.^n;
+a3 = 0.7;   x3 = a3.^n;
+a4 = -0.7;  x4 = a4.^n;
 
-5.3  系统的单位样值响应
+subplot 221, stem(n, x1, 'fill'), grid on;
+xlabel('n'), title('x(n) = 1.3^n');
+subplot 222, stem(n, x2, 'fill'), grid on;
+xlabel('n'), title('x(n) = -1.3^n');
+subplot 223, stem(n, x3, 'fill'), grid on;
+xlabel('n'), title('x(n) = 0.7^n');
+subplot 224, stem(n, x4, 'fill'), grid on;
+xlabel('n'), title('x(n) = -0.7^n');
 
-5.4  离散时间序列的卷积
+```
 
-5.5  离散时间系统的响应
+
+
+### 5.2  离散时间信号的运算
+
+```matlab
+% 5.2 离散时间信号的运算
+% 例 5.12：离散信号在基本运算后的波形图
+% (1)   x1(n) = a^n [u(n) - u(n-N)]
+a = 0.9;  N = 8;  n = -12 : 12;  n1 = n;
+x1 = a.^n .* (n>=0 & n < N);    % n < N 不能取等，书中有误.
+% 这样写是非常方便的, 也可以用 heavisdie(n) 表示 u(n)
+subplot 411, stem(n1, x1, 'fill'), grid on;
+title('x1(n)'), axis([-15 15 0 1]);
+
+% (2)   x2(n) = x1(n + 3);
+n2 = n1 - 3;  x2 = x1;  % 注意这里直接写为 n1 - 3
+subplot 412, stem(n2, x2, 'fill'), grid on;
+title('x2(n)'), axis([-15 15 0 1]);
+
+% (3)   x3(n) = x1(n - 2);
+n3 = n1 + 2;  x3 = x1;
+subplot 413, stem(n3, x3, 'fill'), grid on;
+title('x3(n)'), axis([-15 15 0 1]);
+
+% (4)   x4(n) = x1(-n);
+n4 = n1;   x4 = fliplr(x1);     % 这里书中有误, n4 与 x4 翻一次就可以了.
+subplot 414, stem(n4, x4, 'fill'), grid on;
+title('x4(n)'), axis([-15 15 0 1]);
+
+```
+
+
+
+### 5.3  系统的单位样值响应
+
+```matlab
+% 5.3 系统的单位样值响应
+% 例 5.13：差分方程的单位样值响应
+a = [3 -4 2];   % Y(n) 的系数
+b = [1 2];      % X(n) 的系数
+n = 0 : 50;     % 计算 51 个点
+impz(b, a, 50); % 绘出单位样值响应
+
+```
+
+
+
+### 5.4  离散时间序列的卷积
+
+```matlab
+% 5.4 离散时间序列的卷积
+% 例 5.14：离散序列的卷积和及其波形图
+% x(n) = u(n) - u(n-10);
+% h(n) = u(n) - u(n-5);
+n = -10 : 10;   % 无需使用中括号
+x = zeros(1, length(n));
+x(n>=0 & n<10) = 1;     % 可以直接使用逻辑序列，而无需使用 find 函数
+                        % 即时使用 find 函数，也无需在两侧加中括号
+h = zeros(1, length(n));
+h(n>=0 & n<5) = 1;
+
+n1 = fliplr(-n);    h1 = fliplr(h);                     % 过程 1
+n2 = n1;    h2 = [0, h1];   h2(length(h2)) = [];        % 过程 2
+n3 = n2;    h3 = [0, h2];   h3(length(h3)) = [];        % 过程 3
+n4 = -n;    nmin = min(n1) - max(n4);
+nmax = max(n1) - min(n4);   ny = nmin : nmax;
+y = conv(x, h);     % 卷积结果
+
+subplot 321, stem(n, x, '*k'), title('x(n)');
+subplot 322, stem(n, h, 'ok'), title('h(n)');
+subplot 323, stem(n, x, '*k'), hold on;
+             stem(n1, h1, 'k'), title('p1');
+subplot 324, stem(n, x, '*k'), hold on;
+             stem(n2, h2, 'k'), title('p2');
+subplot 325, stem(n, x, '*k'), hold on;
+             stem(n3, h3, 'k'), title('p3');
+subplot 326, stem(ny, y, '.k'), title('y(n)');
+
+```
+
+
+
+### 5.5  离散时间系统的响应
+
+```matlab
+% 5.5 离散时间系统的响应
+% 例 5.15：输入序列的时域波形图与 LTI 系统的零状态响应
+a = [3 -4 2];   % y(n-k) 的系数
+b = [1 2];      % x(n-k) 的系数
+n = 0 : 20;
+x = 0.5 .^ n;
+y = filter(b, a, x);
+subplot 211, stem(n, x, 'fill'), title('Input Seqence');
+xlabel('n'); ylabel('x(n)');
+subplot 212, stem(n, y, 'fill'), title('Response Sequence');
+xlabel('n'); ylabel('y(n)');
+
+% 例 5.16：系统的零状态响应
+k1 = 0 : 7;     f1 = 0.8 .^ k1 .* ones(1, 8);
+k2 = 0 : 3;     f2 = ones(1, 4);
+% [f, k] = dconv(f1, f2, k1, k2);
+f = conv(f1, f2);   % 教材中给的代码跑不了，换成这个了
+
+% 教材中没有给出绘图代码. 这里的绘图功能是第一次遇到的
+% 其中第三个图像, 可以省略横轴的 k3.
+subplot 221, stem(k1, f1, '*b'), title('f1(n)');
+subplot 222, stem(k2, f2, 'ob'), title('f2(n)');
+subplot(2, 2, [3 4]), stem(f, 'ob'), title('f(n)');
+
+```
+
+
+
+第 6 章  离散 z 域分析
+
+6.1  离散系统零极点图
+
+6.2  系统单位样值响应
+
+6.3  离散系统差分方程
+
+6.4   z 域部分分式展开
+
+6.5   z 变换与 z 逆变换
 
 
 

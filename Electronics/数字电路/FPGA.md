@@ -1,4 +1,4 @@
-<p align="center">FPGA</p>
+<h1 align="center">FPGA 笔记</h1>
 
 $$
 % 设置
@@ -447,6 +447,7 @@ endmodule
   - I/O 说明（也可以在定义端口时说明）
     - `input[n-1:0] 端口1, 端口2;`
     - `output[n-1:0] 端口1, 端口2;`
+    - 端口默认为 `wire` 型.
   - 内部信号
     - `reg[n-1:0] 变量1, 变量2;`
     - `wire[n-1:0] 变量1, 变量2;`
@@ -549,7 +550,7 @@ endmodule
 
     `{b, a, b, a, b}`
 
-- 缩进运算符（弹幕运算符
+- 缩进运算符（单目运算符）
 
   ```verilog
   reg[2:0] A;
@@ -571,36 +572,13 @@ endmodule
     - 赋值语句执行完成之后，b 的值立即改变.
     - 时序逻辑电路中建议不要这样写.
 
-- 块语句
-
-  - 顺序块
-
-    ```verilog
-    // 例 4.5
-    parameter	d = 50;	// 声明 d 是一个参数
-    reg[7:0]	r;		// 8 位寄存器变量
-    begin
-        #d	r = 'h35;
-        #d	r = 'hE2;	// 过了 d 个单位时间后，再经过 d 个单位时间
-        #d	-> end_wave;
-        // 表示触发事件 end_wave 使其翻转
-    end
-    ```
-
-  - 并行块
-
-    ```verilog
-    // 例 4.6
-    fork
-        #100	r = 'hE2;
-        #50		r = 'h35;	// 顺序是不重要的;
-        #150	-> end_wave;
-    join
-    ```
 
 
 
-第 5 章  流程控制语句
+
+
+
+## 第 5 章  流程控制语句
 
 if 语句
 
@@ -620,7 +598,7 @@ case 语句
 
 - 所有表达式值的位宽必须相等.
 
-  不能用 `'bx'` 代替 `n'bz`.
+  不能用 `'bx` 代替 `n'bz`.
 
 - 如果 if 或 case 没有为变量的所有可能都赋值，则会生成锁存器.
 
@@ -654,15 +632,392 @@ end
 repeat 语句
 
 ```verilog
+// 乘法器
+paramter size = 8, longsize = 16;
+reg[size:1] opa, opb;
+reg[longsize:1] result;
 
+begin: mult		// 块语句名
+    reg[longsize:1] shift_opa, shift_opb;
+    shift_opa = opa;
+    shift_opb = opb;
+    result  = 0;
+    repeat(size) begin
+        if (shift_opb[1])
+            result = result + shift_opa;
+        shift_opa = shift_opa << 1;
+        shift_opb = shift_opb >> 1;
+    end
+end
 ```
 
 
 
 while 语句
 
+```verilog
+// 对八位二进制数华中值为 1 的位进行计数
+reg[7:0] rega;
+
+begin: count1s
+    rega = 2'b1011_0110;
+    
+    reg[7:0] tempreg;
+    count = 0;
+    tempreg = rega;
+    while (tempreg) begin
+        if (tempreg[0])
+            count = count + 1;
+        tempreg = tempreg >> 1;
+    end
+end
+```
+
+
+
 for 语句
 
+```verilog
+// 例 5.7：用 for 语句初始化
+begin: init_mem
+    reg[7:0] i;
+    for (i = 0; i < memsize; i = i + 1)
+        memory[i] = 0;
+end
+```
+
+```verilog
+// 例 5.8：用 for 语句实现乘法器
+paramter size = 8, longsize = 16;
+reg[size:1] opa, opb;
+reg[longsize:1] result;
+
+begin: mult		// 块语句名
+    integer i;
+    result = 0;
+    for (i = 1; i <= size; i = i + 1)
+        if (opb[i])
+            result = result + (opa << (i-1));
+end
+```
+
+```verilog
+// 用 for 语句对八位二进制数华中值为 1 的位进行计数
+begin: count1s
+    reg[7:0] tempreg;
+    count = 0;
+    for (tempreg = rega; tempreg; tempreg = tempreg >> 1)
+        if (tempreg[0])
+            count = count + 1;
+end
+```
+
+
+
+块语句
+
+顺序块
+
+```verilog
+// 例 4.5
+parameter	d = 50;	// 声明 d 是一个参数
+reg[7:0]	r;		// 8 位寄存器变量
+begin
+    #d	r = 'h35;
+    #d	r = 'hE2;	// 过了 d 个单位时间后，再经过 d 个单位时间
+    #d	-> end_wave;
+    // 表示触发事件 end_wave 使其翻转
+end
+```
+
+并行块
+
+```verilog
+// 例 4.6
+fork
+    #100	r = 'hE2;
+    #50		r = 'h35;	// 顺序是不重要的;
+    #150	-> end_wave;
+join
+```
+
+块语句可以嵌套
+
+块语句的命名
+
+- 命名块中可以声明局部变量
+- 命名块中声明的变量可以通过层次引用进行访问
+- 命名块可以被禁用
+
+```verilog
+// 例 5.12：命名块的层次引用
+module top;
+    initial begin: block1
+        integer i;	// top.block1.i
+    end
+    initial fork: block2
+        reg i;		// top.block2.i
+    join
+endmodule
+```
+
+```verilog
+// 例 5.13：命名块的禁用
+// 在标志寄存器中查找第一个非零位
+reg[15:0] flag;
+integer i;	// 用于计数
+
+initial begin
+    flag = 16'b 0010_0000_0000_0000;
+    i = 0;
+    begin: block1
+        while (i < 16) begin
+            if (flag[i]) begin
+                $display("TRUE bit at %d", i);
+                disable block1;
+            end
+            i = i + 1;
+        end
+    end
+end
+```
+
+
+
+5.7  生成块
+
+5.7.1  循环生成语句
+
+```verilog
+// 例 5.14：对两个 N 位总线变量进行按位异或
+module bitwise_xor(out, i0, i1);
+    paramter N = 32;
+    output[N-1 : 0] out;
+    input[N-1 : 0]	i0, i1;
+    
+    genvar j;	// 仿真时该变量在设计中不存在
+    generate
+        for (j = 0; j < N; j = j + 1)
+            begin: xor_loop
+                xor g1 (out[j], i0[j], i1[j]);
+            end
+    endgenerate
+endmodule
+```
+
+```verilog
+// 例 5.14 的另一种编写形式
+module bitwise_xor(out, i0, i1);
+    paramter N = 32;
+    output[N-1 : 0] out;
+    input[N-1 : 0]	i0, i1;
+    
+    reg[N-1 : 0] out;
+    
+    genvar j;
+    generate
+        for (j = 0; j < N; j = j + 1)
+            begin: bit
+                always@(i0[j] or i1[j])
+                    out[j] = i0[j] ^ i1[j];
+            end
+    endgenerate
+endmodule
+```
+
+```verilog
+// 例 5.15：用循环生成语句描述的脉动加法器
+module ripple_adder(co, sum, a0, a1, ci);
+    parameter N = 4;	// 默认总线位宽为 4
+    output[N-1 : 0]	sum;
+    output	co;
+    input[N-1 : 0]	a0, a1;
+    input ci;
+    
+    wire[N-1 : 0] carry;
+    assign carry[0] = ci;
+    
+    genvar i;
+    generate
+        for (i = 0; i < N; i = i + 1)	begin: r_loop
+            wire t1, t2, t3;
+            xor g1(t1, a0[i], a1[i]);
+            xor g2(sum[i], t1, carry[i]);
+            and g3(t2, a0[i], a1[i]);
+            and g4(t3, t1, carry[i]);
+            or	g5(carry[i+1], t2, t3);
+        end
+    endgenerate
+    
+    // 以 or 为例，上述生成块会生成以下层次实例名
+    // or: r_loop[0].g5, r_loop[1].g5, r_loop[2].g5, r_loop[3].g5
+    // 线网也会连接起来：r_loop[0].t1, r_loop[1].t2 等等；
+    
+    assign co = carry[N];
+endmodule
+```
+
+
+
+5.7.2  条件生成语句
+
+```verilog
+// 例 5.16：使用条件生成语句实现参数化乘法器
+module multiplier(a0, a1, product);
+    // 可重新定义 (defparam) 的参数
+    parameter a0_width = 8;
+    parameter a1_width = 8;
+    
+    // 本地参数
+    // 1. 不能用参数重新定义
+    // 2. 也不能在实例引用时通过传递参数语句，即 #(参数1, 参数2) 的方法修改
+    localparam product_width = a0_width + a1_width;
+    
+    // 端口声明语句
+    input[a0_width-1:0] a0;
+    input[a1_width-1:0] a1;
+    output[product_width-1:0] product;
+    
+    // 根据位数选择不同类型的乘法器
+    generate
+        if (a0_width < 8 || a1_width < 8)
+            cal_multiplier #(a0_width, a1_width) m0(product, a0, a1);
+        	// # 用于给参数赋值
+        else
+            tree_multiplier #(a0_width, a1_width) m0(product, a0, a1);
+    endgenerate
+endmodule
+```
+
+
+
+5.7.3  case 生成语句
+
+```verilog
+// 例 5.17：case 生成语句生成 N 位加法器
+module adder(co, sum, a0, a1, ci);
+    // 声明的参数可以重新定义
+    parameter N = 4;	// 默认的总线位宽为 4
+    
+    // 端口声明
+    output[N-1:0] sum;
+    output co;
+    input[N-1:0] a0, a1;
+    input ci;
+    
+    // 根据总线位宽，调用相应的加法器（实例引用）
+    // 参数 N 在调用（实例引用）时可重新定义
+    generate
+        case (N)
+            1: adder_1bit adder1(co, sum, a0, a1, ci);
+            2: adder_2bit adder2(co, sum, a0, a1, ci);
+            default: adder_cla #(N) adder3(co, sum, a0, a1, ci);
+        endcase
+    endgenerate
+endmodule
+```
+
+
+
+5.8  举例
+
+5.8.1  四选一多路选择器
+
+写法一：
+
+```verilog
+// 例 5.18：四选一多路选择器——写法一
+module mux4_to_1(out, i0, i1, i2, i3, s1, s0);
+    input i0, i1, i2, i3;
+    input s1, s0
+    output reg out;
+    
+    always @(*) begin
+        case ({s1, s0})
+            2'b00: out = i0;
+            2'b01: out = i1;
+            2'b10: out = i2;
+            2'b11: out = i3;
+            default: out = 1'bx;
+        endcase
+    end
+endmodule
+```
+
+
+
+写法二：
+
+```verilog
+// 例 5.18：四选一多路选择器——写法一
+module mux4_to_1(out, i, s);
+    input[3:0] i;
+    input[1:0] s;
+    output reg out;
+    
+    // 试试能不能这样写，一是数组直接写 s，二是把 s 放在下标中
+    // 哈哈，测试过了，都是可以的
+    always @(s or i) out = i[s];
+endmodule
+```
+
+
+
+上述代码的 testbench：
+
+```verilog
+// testbench of mux4_to_1
+`timescale 1ns/10ps
+module mux4_to_1_tb;
+    reg[3:0] i;
+    reg[1:0] s;
+    wire out;
+    
+    mux4_to_1 mux4_to_1(.i(i), .s(s), .out(out));
+
+    always #10  i <= i + 1;
+    always #160 s <= s + 1;
+    initial begin
+        i <= 0;	s <= 0;
+        #640 $stop;
+    end
+endmodule
+```
+
+
+
+5.8.2  四位计数器
+
+```verilog
+// 例 5.19：四位二进制计数器
+module counter(Q, clock, clear);
+    output reg[3:0] Q;
+    input clock, clear;
+    
+    always @(posedge clear or negedge clock) begin
+        if (clear)	Q <= 4'd0;	// 为了生成包含触发器的时序逻辑，使用非阻塞赋值
+        else		Q <= Q + 1;	// 四位寄存器，无需模 16
+    end
+endmodule
+
+// testbench of counter
+`timescale 1ns/10ps
+module counter_tb;
+    reg clock, clear;
+    wire[3:0] Q;
+
+    counter counter(.clock(clock), .clear(clear), .Q(Q));
+
+    always #10  clock <= ~clock;
+    always #250 clear <= ~clear;
+    initial begin
+        clock <= 0;
+        clear <= 1;
+        #1000 $stop;
+    end
+endmodule
+
+```
 
 
 
@@ -670,6 +1025,434 @@ for 语句
 
 
 
+## 第 6 章  结构语句、系统任务、函数语句和显示系统任务
+
+### 6.1  系统说明语句
+
+#### 6.1.1 initial
+
+一个模块可以有多个 initial 块，并且都是并行运行的.
+
+#### 6.1.2  always
+
+- 如果没有时序控制，则会产生仿真死锁，如 `always A <= B;`
+
+- 敏感事件列表，既可以用 `or` 也可以用 `, `，如 `always @(A, B) ...`
+
+- `@*` 或 `@(*)` 可以将所有输入变量都包括进敏感列表.
+
+- 电平敏感时序控制，即等到条件为真时才运行，如
+
+  `always wait(ena) #20 count <= count + 1;`
+
+
+
+### 6.2  task 和 function
+
+#### 6.2.1  说明语句介绍
+
+- 函数与主模块共用一个仿真时间单位，而任务可自定义.
+- 函数不能启动任务，而任务能启动其它任务和函数.
+- 函数至少需要一个输入变量，而任务可以没有或有多个任何类型的变量.
+- 函数返回一个值，而任务则不返回值.
+
+```verilog
+switch_bytes(old_word, new_word);	// 任务
+new_word = switch_bytes(old_word);	// 函数
+```
+
+
+
+#### 6.2.2 task 说明语句
+
+```verilog
+// 任务的定义
+task<任务名>;
+    <端口及数据类型声明语句>
+    <语句>
+endtask
+
+// 任务的调用
+<任务名>(端口1, 端口2, ...)
+```
+
+
+
+```verilog
+// 例 6.9：描述交通信号灯行为的模块
+// 该模块只是一个行为模块，不能综合成电路网表
+`timescale 1ns/10ps
+module traffic_lights;
+    reg clock, red, amber, green;
+    parameter on = 1, off = 0;
+    parameter red_tics = 350, amber_tics = 30, green_tics = 200;
+    
+    // 提问：可不可以写成 red = amber = green = off;
+    // 即赋值语句有没有返回值？那样连 begin end 都省了，直接一行代码.
+    // 试过了，只有非阻塞赋值都可以这样写
+    // 不！这样编译虽然能过，但是结果却有问题，都显示不定值了.
+    // initial red <= amber <= green <= off;
+    
+    // 交通灯控制程序
+    always begin
+        red = on;   light(red, red_tics);
+        green = on; light(green, green_tics);
+        amber = on; light(amber, amber_tics);
+    end
+    
+    // 定义交通灯开启时间的任务
+    task light;
+        output color;
+        input[31:0] tics;
+        begin
+            repeat(tics)
+                @(posedge clock);   // 等待 tics 个时钟的上升沿
+            color = off;            // 之后关灯
+        end
+    endtask
+    
+    // 产生时钟脉冲
+    initial begin
+        clock <= 0;
+        red <= off; amber <= off; green <= off;
+        #10000 $stop;
+    end
+    always #1 clock <= ~clock;
+endmodule
+
+```
+
+
+
+#### 6.2.3  function 说明语句
+
+```verilog
+// 函数的定义
+function <返回值的类型或范围> (函数名):
+    <端口说明语句>
+    <变量类型说明语句>
+    begin
+        <语句>
+    end
+endfunction
+```
+
+
+
+```verilog
+// 例子
+function [7:0] getbyte;
+    input [15:0] address;
+    begin
+        <说明语句>
+        getbyte = result_expression
+    end
+endfunction
+```
+
+
+
+使用规则
+
+- 函数的定义不能包含任何时间控制语句
+- 函数不能启动任务
+- 定义函数时至少要有一个输入参量
+
+
+
+```verilog
+// 例 6.10：阶乘函数的定义与调用
+module tryfact;
+    // 函数的定义
+    function[31:0] factorial;
+        input[3:0] operand;
+        reg[3:0] index;
+        begin
+            factorial = 1;
+            for (index = 2; index <= operand; index = index + 1)
+                factorial = index * factorial;
+        end
+    endfunction
+    
+    // 函数的测试
+    reg[31:0] result;
+    reg[3:0] n;
+    initial begin
+        result = 1;
+        for (n = 2; n <= 9; n = n +1) begin
+            $display("%d: %d, ", n, result);
+            result = n * factorial(n) / (2*n +1);
+        end
+        $display("Final result = %d", result);
+    end
+endmodule
+```
+
+
+
+#### 6.2.4  函数的使用举例
+
+##### 1  奇偶校验位
+
+```verilog
+// 例 6.11：奇偶校验位的计算
+module parity;
+    reg[31:0] addr;
+    reg parity;
+    
+    initial begin
+        addr <= 32'h3456_789a;
+        #10 addr <= 32'hc4c6_78ff;
+        #10	addr <= 32'hff56_ff9a;
+        #10 addr <= 32'h3faa_aaaa;
+    end
+    
+    always @(addr) begin
+        parity = calc_parity(addr);	// 第一次启动，下一行是第二次
+        $display("Parity calculated = %b", calc_parity(addr));
+    end
+    
+    // 定义奇偶校验计算函数
+    function calc_parity;
+        input[31:0] address;
+        begin
+            calc_parity = ^address;	// 返回所有地址位的异或值
+        end
+    endfunction
+endmodule
+```
+
+- 注意上述代码中的 `^addresss` 
+
+```verilog
+// 例 6.12：使用 C 风格进行变量声明的函数定义
+function calc_parity(input[31:0] address);
+    begin
+        calc_parity = ^address;
+    end
+endfunction
+```
+
+
+
+##### 2  左右移位寄存器
+
+```verilog
+// 例 6.13：定义一个包含移位函数的模块
+module shifter;
+    `define LEFT_SHIFT	1'b0
+    `define	RIGHT_SHFIT	1'b1
+    reg[31:0] addr, left_addr, right_addr;
+    reg control;
+    
+    always @(addr) begin
+        left_addr = shift(addr, `LEFT_SHIFT);
+        right_addr = shift(addr, `RIGHT_SHIFT);
+    end
+    
+    function[31:0] shift;
+        input[31:0] address;
+        input control;
+        begin
+            shift = (control == `LEFT_SHIFT) ? (address << 1) : (address >> 1);
+        end
+    endfunction
+endmodule
+```
+
+
+
+#### 6.2.5  自动递归函数
+
+Verilog 中的函数默认不能递归调用，如果同时调用同一块地址空间，那么计算结果将不确定.
+
+```verilog
+// 例 6.14：自动递归函数
+module top;
+    function automatic integer factorial;
+        input[31:0] oper;
+        integer i;
+        begin
+            if (operand >= 2)
+                factorial = factorial(oper - 1) * oper;	// 递归
+            else
+                factorial = 1;
+        end
+    endfunction
+    
+    integer result;
+    intial begin
+        result = facotrial(4);
+        $display("Factorial of 4 is %0d", result);
+    end
+endmodule
+```
+
+
+
+#### 6.2.6  常量函数
+
+```verilog
+// 例 6.15：常量函数
+module ram(...);
+    parameter RAM_DEPTH = 256;
+    input[clogb2(RAM_DEPTH) - 1 : 0] addr_bus;
+    ...
+    function integer clogb2(input integer depth);
+        begin
+            for (clogb2 = 0; depth > 0; clogb2 = clogb2 + 1)
+                depth = depth >> 1;
+        end
+    endfunction
+endmodule
+```
+
+
+
+#### 6.2.7  带符号函数
+
+```verilog
+// 例 6.16：带符号函数
+module top;
+    ...
+    function signed[63:0] compute_signed(input[63:0] vector);
+        //
+    endfunction
+    ...
+endmodule
+```
+
+
+
+### 6.4  常用的系统任务
+
+#### 6.4.1  \$display 和 \$write
+
+<img src="image/FPGA 6.4.1 输出格式.png" alt="image-20230531121244091" style="zoom:75%;" />
+
+<img src="image/FPGA 6.4.1 换码序列.png" alt="image-20230531121339370" style="zoom:75%;" />
+
+```verilog
+// 例 6.17
+module disp;
+    initial begin
+        $display("\\\t%%\n\"\123");
+        \*	\\ 表示反斜杠，\t 表示制表符，%% 表示百分号
+        	\n 表示换行符 ，\" 表示双引号，\123 表示 S
+        \*
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 6.18
+module disp;
+    reg[31:0] rval;
+    pulldown(pd);
+    initial begin
+        rval = 101;
+        $display("rval = %h (hex), %d (decimal)", rval, rval);
+        $display("rval = %o (otal), %b (binary)", rval, rval);
+        $display("rval has %c ascii character value", rval);
+        $display("pd strength is %v", pd)	// 输出 StX
+        $display("current scope is %m");	// 输出 disp
+        $display("%s is ascii value for 101", 101);	// e
+        $display("simulatoin time is %t", &time);	// 0
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 6.19
+module printval;
+    reg[11:0] r1;
+    initial begin
+        r1 = 10;
+        $display("maximum size = %d = %h", r1, r1);		// 10, 00a
+        $display("minimum size = %0d = %0h", r1,r1);	// 10, a
+    end
+endmodule
+```
+
+
+
+#### 6.4.2  文件输出
+
+```verilog
+// 例 6.20：文件描述符
+integer handle1, handle2;	// 整型数为 32 位
+integer desc1, desc2, desc3;
+
+initial begin
+    handle1 = $fopen("file1.out");	// 32'h0000_0002
+    handle2 = $fopen("file2.out");	// 32'h0000_0004
+    
+    desc1 = handle1 | 1;			// 1 为标准输出 stdout
+    $fdisplay(desc1, "Display 1");	// 同时写入 file1.out 和 stdout
+    
+    desc2 = handle2 | handle1;
+    $fdisplay(desc2, "Display 2");	// 写入 file1.out 和 file2.out
+    
+    $fclose(handle1);
+end
+```
+
+- 写文件：`$fdisplay, $fmonitor, $fwrite, $fstrobe`
+
+
+
+#### 6.4.3  显式层次
+
+```verilog
+// 例 6.21：显示层次
+module M;
+    initial $display("%m");
+endmodule
+
+module top;
+    M m1();		// 输出 top.m1
+    M m2();		// 输出 top.m2
+endmodule
+```
+
+
+
+#### 6.4.4  选通显示
+
+```verilog
+// 例 6.22：选通显示
+always @(posedge clock) begin
+    a = b;	c = d;
+end
+
+always @(posedge clock)
+    $strobe("a = %b, c=  %b", a, c);
+// posedge clock 发生时，始终在其它语句完成后才执行 $strobe
+```
+
+
+
+#### 6.4.5  值变转储文件
+
+```verilog
+// 例 6.23：VCD 文件系统任务
+initial $dumpfile("myfile.dmp");	// 仿真信息转储到 myfile.dmp
+initial $dumpvars;					// 设计中的全部信息都转储
+initial $dumpvars(1, top);			// 转出模块示例 top 模块第一层的信号
+initial $dumpvars(2, top.m1);		// 转储 top.m1 下两层的信号
+initial $dumpvars(0, top.m1);		// 0 表示各个层的所有信号
+
+initial begin
+    		$dumpon;	// 启动转储过程
+    #100000	$dumpoff;	// 停止转储过程
+end
+
+initial $dumpall;		// 转储所有 VCD 变量的现行值
+```
 
 
 
@@ -677,6 +1460,100 @@ for 语句
 
 
 
+## 第 7 章  调试用系统任务和编译预处理语句
+
+### 7.1  $monitor
+
+```verilog
+$monitor($time, , "rxd = %b, txd = %b", rxd, txd);
+// ', ,' 空参数显示为空格
+```
+
+
+
+### 7.2  \$time 与 \$realtime
+
+```verilog
+`timescale 10ns/1ns
+module test;
+    reg set;
+    initial begin
+        $monitor($time, ", ", $realtime, ", ", "set = ", set);
+        		// 输出：	 0, 0, set = x
+        #1.6 set = 0;	// 2, 1.6, set = 0
+        #1.6 set = 1;	// 3, 3.2, set = 1
+    end
+endmodule
+```
+
+
+
+### 7.3  \$finish 与 \$stop
+
+```verilog
+$finish;	// 结束仿真
+$finish(0);	// 结束且不输出任何信息
+$finish(1);	// 输出当当前仿真时刻和位置
+$finish(2);	// 输出当前仿真时刻、位置、所有 memory 和 CPU 时间统计
+
+$stop;		// 暂停仿真 (可在仿真器中点击继续仿真)
+$stop(n);
+```
+
+
+
+### 7.4  \$readmemb 与 \$readmemh
+
+```verilog
+// 例 7.3：初始化存储器
+module test;
+    reg[7:0] memory[0:7];	// 8 个 8 位的存储单元
+    integer i;
+    
+    initial begin
+        $readmemb("init.dat", memory);
+        for (i = 0; i < 8; i = i + 1) begin
+            $display("Memory[%d] = %b", i, memory[i]);
+        end
+    end
+endmodule
+```
+
+```dat
+// init.dat 文件
+@002
+11111111 01010101
+00000000 10101010
+
+@006
+1111zzzz 00001111
+```
+
+
+
+### 7.6  \$random
+
+```verilog
+reg[23:0] rand;
+rand = $random;			// 生成 32 位的带符号随机数, 赋给 rand 时取低 24 位
+rand = $random % 60;	// -b+1 ~ b-1
+```
+
+
+
+### 7.7  编译预处理
+
+```verilog
+`define NUM 8	// 定义宏（无需分号）
+a = `NUM;		// 引用宏
+
+`define NUM 8;	// 连着分号一起被替换
+a = `NUM		// 于是无需再写分号
+
+`define expr a+b+c+d	// 建议不加分号，以防后续语法出错
+
+`define typ_nand nand #5	// 可以包含空格等
+```
 
 
 
@@ -684,6 +1561,92 @@ for 语句
 
 
 
+## 第 12 章  状态机
+
+- 状态的编码：使用 Gray 码或独热码
+- 输出的变量：使用新的变量，或者直接把部分状态作为输出
+
+```verilog
+// 例 12.1：有限状态机，Gray编码
+module fsm(clk, rst, A, K2, K1, state);
+    input clk, rst, A;
+    output reg K2, K1;
+    output reg[1:0] state;
+    // Gray 码：
+    parameter	Idle  = 2'b00,
+    			Start = 2'b01,
+    			Stop  = 2'b10,
+    			Clear = 2'b11;
+    // 或者用独热码：
+    /*
+    parameter	Idle  = 4'b1000,
+    			Start = 4'b0100,
+    			Stop  = 4'b0010,
+    			Clear = 4'b0001;
+    */
+    
+    always @(posedge clk) begin
+        if (!rst) begin
+            state <= Idle;	K2 <= 0;	K1 <= 1;
+        end
+        else case (state)
+            Idle: if (A) begin
+                state <= Start;	K1 <= 0;
+            end
+            else begin
+                state <= Idle;	K2 <= 0;	K1 <= 0;
+            end
+            ...	// 其它的状态
+            default: state <= 2'bxx;
+        endcase
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 12.4
+module fsm(Clock, Reset, A, K2, K1);
+    input Clock, Reset, A;
+    output reg K2, K1;
+    reg[1:0] state, nextState;
+    
+    parameter Idel = 2'b00;
+    parameter Start = 2'b01;
+    parameter Stop = 2'b10;
+    parameter Clear = 2'b11;
+    
+    // 时钟沿产生可能的状态变化
+    always @(posedge Clock)
+        if (!Reset)	state <= Idle;
+	    else state <= nextState;
+    
+    // 产生下一状态的组合逻辑
+    always @(state or A)
+        case (state)
+            Idle:	nextState <= A ? Start : Idle;
+            Start:	nextState <= A ? Start : Stop;
+        	Stop:	nextState <= A ? Clear : Stop;
+            Clear:	nextState <= A ? Clear : Idle;
+            default: nextState <= 2'bxx;
+        endcase
+    
+    // 输出 K1
+    always @(state or Reset or A) begin
+        if (!Reset)						K1 <= 0;
+        else if (state == Clear && !A)	K1 <= 1;
+        else 							K1 <= 0;
+    end
+    
+    // 输出 K2
+    always @(state or Reset or A) begin
+        if (!Reset)						K2 <= 0;
+        else if (state == Stop && A)	K2 <= 1;
+        else							K2 <= 0;
+    end
+endmodule
+```
 
 
 
@@ -691,5 +1654,337 @@ for 语句
 
 
 
+## 第 13 章  编写可综合的代码
+
+13.5.1  组合逻辑电路
+
+```verilog
+// 例 13.1：n 位加法器
+module adder(a, b, cin, sum, cout);
+    parameter n = 8;
+    
+    input cin;
+    input[n-1:0] a, b;
+    output cout;
+    output[n-1:0] sum;
+    
+    assign {cout, sum} = a + b + cin;
+endmodule
+```
+
+
+
+```verilog
+// 例 13.2: 指令译码电路
+// 操作码的宏定义
+`define plus	3'd0
+`define minus	3'd1
+`define band	3'd2
+`define bor		3'd3
+`define unegate	3'd4
+
+module alu(a, b, opcode, out);
+    input[2:0] opcode;
+    input[7:0] a, b;
+    output reg[7:0] out;
+    
+    always @(opcode or a or b) begin
+        case (opcode) 
+            `plus:		out = a + b;
+            `minus:		out = a - b;
+            `band:		out = a & b;
+            `bor:		out = a | b;
+            `unegate:	out = ~a;
+            default:	out = 8'hx;
+        endcase
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 13.3: 排序
+module sort4(a, b, c, d, ra, rb, rc, rd);
+    parameter n = 4;
+    input[n-1:0] a, b, c, d;
+    output reg[n-1:0] ra, rb, rc, rd;
+    
+    always @(a or b or c or d) begin: local
+        // 如果定义局部变量，则必须有模块名
+        reg[n-1:0] va, vb, vc, vd;
+        {va, vb, vc, vd} = {a, b, c, d};
+        sort2(va, vc);	sort2(vb, vd);
+        sort2(va, vb);	sort2(vc, vd);
+        sort2(vb, vc);
+        {ra, rb, rc, rd} = {va, vb, vc, vd};
+    end
+    
+    task sort2;
+        input[n-1:0] x, y;
+        if (x > y) {x, y} = {y, x};
+    endtask
+endmodule
+```
+
+
+
+```verilog
+// 例 13.4：比较器
+module compare(equal, a, b);
+    parameter size = 1;
+    input[size-1:0] a, b;
+    output equal;
+    assign equal = (a==b) ? 1 : 0;
+endmodule
+```
+
+
+
+```verilog
+// 例 13.5：3-8 译码器
+module decoder(in, out);
+    input[2:0] in;
+    output[7:0] out;
+    assign out = 1'b1 << in;
+endmodule
+```
+
+
+
+```verilog
+// 例 13.6: 8-3 编码器 1
+module encoder1(none_on, out, in);
+    input[7:0] in;
+    output reg[2:0] out;
+    output reg none_on;
+    
+    always @(in) begin: local
+        integer i;
+        out = 0;
+        none_on = 1;
+        for (i = 0; i < 8; i = i + 1) begin
+            if (in[i]) begin
+                out = i;
+                none_on = 0;
+            end
+        end
+    end
+endmodule
+
+// 8-3 编码器 2 (优先编码器, 利用 ?: 语句实现)
+module encoder2(none_on, out, in);
+    input[7:0] in;
+    output reg[2:0] out;
+    output reg none_on;
+    
+    wire[3:0] outvec;
+    assign outvec = in[7] ? 4'b0111 :
+        in[6] ? 4'b0110 :
+        in[5] ? 4'b0101 :
+        in[4] ? 4'b0100 :
+        in[3] ? 4'b0011 :
+        in[2] ? 4'b0010 :
+        in[1] ? 4'b0001 :
+        in[0] ? 4'b0000 : 4'b1000;
+    assign {none_on, out} = outvec;
+endmodule
+
+// 8-3 编码器 3 (优先编码器, 利用 always 语句实现)
+module encoder3(none_on, out, in);
+    input[7:0] in;
+    output[2:0] out;
+    output none_on;
+    
+    reg[3:0] outvec;
+    assign {none_on, out} = outvec;
+    always @(in) begin
+        if (in[7])		outvec = 4'b0110;
+        else if (in[6])	......
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 13.7: 多路选择器
+module emux1(out, a, b, sel);
+    input a, b, sel;
+    output out;
+    assign out = sel ? a : b;
+endmodule
+
+module emux2(out, a, b, sel);
+    input a, b, sel;
+    output reg out;
+    
+    always @(a or b or sel) begin
+        case (sel)
+            1'b1: out = a;
+            1'b0: out = b;
+            default: out = 'bx;
+        endcase
+    end
+endmodule
+
+module emux3(out, a, b, sel);
+    input a, b, sel;
+    output reg out;
+    
+    always @(a or b or sel) begin
+        if (sel)	out = a;
+        else		out = b;
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 13.8: 奇偶校验位生成器
+module parity(even_numbits, odd_numbits, input_bus);
+    output even_numbits, odd_numbits;
+    input[7:0] input_bus;
+    assign odd_numbits = ^input_bus;
+    assign even_numbits = ~odd_numbits;
+endmodule
+```
+
+
+
+```verilog
+// 例 13.9: 三态输出驱动器 (三态门模型)
+module trist1(out, in, enable);
+    input in, enable;
+    output out;
+    assign out = enable ? in : 'bz;
+endmodule
+
+module trist2(out, in, enable)
+    input in, enable;
+    output out;
+    // bufif1 是一个 Verilog 门级原语
+    bufif1 mybuf1(out, in, enable);
+endmodule
+```
+
+
+
+```verilog
+// 例 13.10: 三态双向驱动器
+module bidir(tri_inout, out, in, en, b);
+    input tri_inout;
+    output out;
+    input in, en, b;
+    assign tri_inout = en ? in : 'bz;
+    assign out = tri_inout ^ b;
+endmodule
+```
+
+
+
+13.5.2  时序逻辑电路
+
+```verilog
+// 例 13.11: 触发器
+module dff(q, data, clk);
+    input data, clk;
+    output reg q;
+    
+    always @(posedge clk) begin
+        q <= data;
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 13.12: 电平敏感型锁存器
+module latch1(q, data, clk);
+    input data, clk;
+    output q;
+    assign q = clk ? data : q;
+endmodule
+```
+
+
+
+```verilog
+// 例 13.13: 带置位和复位端的电平敏感型锁存器
+module latch2(q, data, clk, set, reset);
+    input data, clk, set, reset;
+    output q;
+    assign q = reset ? 0 : (set ? 1 (clk ? data : q));
+endmodule
+```
+
+
+
+```verilog
+// 例 13.14: 电平敏感型锁存器
+module latch(q, data, clk);
+    input data, clk;
+    output reg q;
+    
+    always @(clk)	q <= data;
+endmodule
+```
+
+
+
+```verilog
+// 例 13.15: 移位寄存器
+module shifter(din, clk, clr, dout);
+    input din, clk, clr;
+    output reg[7:0] dout;
+    
+    always @(posedge clk) begin
+        if (clk) dout <= 8'b0;
+        else begin
+            dout <= dout << 1;
+            dout[0] <= din;
+        end
+    end
+endmodule
+```
+
+
+
+```verilog
+// 例 13.16: 8 位计数器
+module counter1(out, data, load, cin, clk);
+    input[7:0] data;
+    input load, cin, clk;
+    output reg[7:0] out;
+    output cout;
+    
+    always @(posedge clk) begin
+        if (load)	out <= data;
+        else		out <= out + cin;
+    end
+    
+    assign cout = (&out) & cin;
+    // &out 当且仅当 out 所有位都为 1 时才为 1
+endmodule
+
+module counter2(out, cout, data, load, cin, clk);
+    input[7:0] data;
+    input load, cin, clk;
+    output reg[7:0] out;
+    output reg cout;
+    
+    reg[7:0] preout;
+    always @(posedge) begin
+        out <= preout;
+    end
+    
+    always @(out or data or load or cin) begin
+        {cout, preout} = out + cin;
+        if (load)	preout = data;
+    end
+endmodule
+```
 
 

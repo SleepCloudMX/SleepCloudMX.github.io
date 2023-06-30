@@ -1,0 +1,747 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<link rel="shortcut icon" href="https://sleepcloudmx.github.io/Others/Image/kenomimi.png">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+thead, tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+svg { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.reversefootnote { font-family: ui-monospace, sans-serif; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+mjx-container { break-inside: avoid; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    pre {
+        page-break-inside: avoid;
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG2"] path[data-c], mjx-container[jax="SVG2"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>线下辅导教案</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 align="center">线下辅导教案</h1><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n2" cid="n2" mdtype="math_block" data-math-tag-before="0" data-math-tag-after="0" data-math-labels="[]"><div class="md-rawblock-container md-math-container" tabindex="-1"><mjx-container class="MathJax" jax="SVG" display="true" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="0.036ex" height="0.036ex" role="img" focusable="false" viewBox="0 0 16 16" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: 0px;"><defs></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"></g></g></svg><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"></math></mjx-assistive-mml></mjx-container></div></div><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n4"><a class="md-toc-inner" href="#1--整体思路">1  整体思路</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n5"><a class="md-toc-inner" href="#11--本门课程重点">1.1  本门课程重点</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n14"><a class="md-toc-inner" href="#12--连续-lti-系统">1.2  连续 LTI 系统</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n45"><a class="md-toc-inner" href="#13--离散-lti-系统">1.3  离散 LTI 系统</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n90"><a class="md-toc-inner" href="#14--其它相关说明">1.4  其它相关说明</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n117"><a class="md-toc-inner" href="#15--相关书籍推荐">1.5  相关书籍推荐</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n166"><a class="md-toc-inner" href="#2--重点内容">2  重点内容</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n169"><a class="md-toc-inner" href="#21--信号与线性系统">2.1  信号与线性系统</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n187"><a class="md-toc-inner" href="#22--连续的时域分析">2.2  连续的时域分析</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n202"><a class="md-toc-inner" href="#23--连续的频域分析">2.3  连续的频域分析</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n226"><a class="md-toc-inner" href="#24--连续复频域分析">2.4  连续复频域分析</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n247"><a class="md-toc-inner" href="#25--离散的时域分析">2.5  离散的时域分析</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n262"><a class="md-toc-inner" href="#26--离散的-z-域分析">2.6  离散的 z 域分析</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n283"><a class="md-toc-inner" href="#3--知识专题">3  知识专题</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n284"><a class="md-toc-inner" href="#31--连续的时域分析">3.1  连续的时域分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n285"><a class="md-toc-inner" href="#311--冲激函数的性质">3.1.1  冲激函数的性质</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n286"><a class="md-toc-inner" href="#312--卷积积分的求解">3.1.2  卷积积分的求解</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n287"><a class="md-toc-inner" href="#313--常用的卷积积分">3.1.3  常用的卷积积分</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n288"><a class="md-toc-inner" href="#314--零状态与零输入">3.1.4  零状态与零输入</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n290"><a class="md-toc-inner" href="#32--连续的频域分析">3.2  连续的频域分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n291"><a class="md-toc-inner" href="#321--傅氏变换的性质">3.2.1  傅氏变换的性质</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n292"><a class="md-toc-inner" href="#322--常用的傅氏变换">3.2.2  常用的傅氏变换</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n293"><a class="md-toc-inner" href="#323--系统傅里叶分析">3.2.3  系统傅里叶分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n294"><a class="md-toc-inner" href="#324--时域的抽样定理">3.2.4  时域的抽样定理</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n296"><a class="md-toc-inner" href="#33--连续复频域分析">3.3  连续复频域分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n297"><a class="md-toc-inner" href="#331--拉氏变换的性质">3.3.1  拉氏变换的性质</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n298"><a class="md-toc-inner" href="#332--常用的拉氏变换">3.3.2  常用的拉氏变换</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n299"><a class="md-toc-inner" href="#333--系统复频域分析">3.3.3  系统复频域分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n300"><a class="md-toc-inner" href="#334--系统稳定性判断">3.3.4  系统稳定性判断</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n302"><a class="md-toc-inner" href="#34--离散的时域分析">3.4  离散的时域分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n303"><a class="md-toc-inner" href="#341--离散信号与系统">3.4.1  离散信号与系统</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n304"><a class="md-toc-inner" href="#342--零状态与零输入">3.4.2  零状态与零输入</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n305"><a class="md-toc-inner" href="#343--单位的样值响应">3.4.3  单位的样值响应</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n306"><a class="md-toc-inner" href="#344--离散序列卷积和">3.4.4  离散序列卷积和</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n308"><a class="md-toc-inner" href="#35--离散的-z-域分析">3.5  离散的 z 域分析</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n309"><a class="md-toc-inner" href="#351--常用的-z-变换">3.5.1  常用的 z 变换</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n310"><a class="md-toc-inner" href="#352---z-变换的性质">3.5.2   z 变换的性质</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n311"><a class="md-toc-inner" href="#353---z-逆变换求解">3.5.3   z 逆变换求解</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n312"><a class="md-toc-inner" href="#354---z-域分析求解">3.5.4   z 域分析求解</a></span></p></div><h2 id='1--整体思路'><span>1  整体思路</span></h2><h3 id='11--本门课程重点'><span>1.1  本门课程重点</span></h3><ul><li><p><span>最根本问题：信号通过系统，求解响应信号.</span></p></li><li><p><span>最主要对象：线性时不变系统 (LTI 系统，LTIS).</span></p></li><li><p><span>最重要目的：求解微分方程与差分方程.</span></p></li></ul><p>&nbsp;</p><h3 id='12--连续-lti-系统'><span>1.2  连续 LTI 系统</span></h3><p><strong><span>连续 LTI 系统</span></strong><span>（CLTIS）：等效为求解微分方程（或积分方程）</span></p><ul><li><p><span>第二章：</span><strong><span>时域分析</span></strong></p><ul><li><p><span>经典时域法：零输入响应 + 零状态响应（可细分多种思路）</span></p></li><li><p><span>卷积积分法：传输算子、卷积积分</span></p></li></ul></li><li><p><span>第三章：</span><strong><span>频域分析</span></strong></p><ul><li><p><span>傅里叶级数：展开成易于求解响应的三角级数或指数级数，最后求和.（相量法）</span></p></li><li><p><span>傅里叶变换：时域 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-15-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-15-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ra </script><span> 频域 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-15-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-15-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ra </script><span> 时域.</span></p></li><li><p><span>卷积积分法：与第二章不同，可以利用频域求解卷积积分.</span></p></li><li><p><span>系统函数法：主要用于求解多个系统的级联、并联与反馈联结.</span></p></li></ul></li><li><p><span>第四章：</span><strong><span>复频域分析</span></strong></p><ul><li><p><span>拉氏变换法：时域 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-15-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-15-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ra </script><span> 复频域 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-15-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-15-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ra </script><span> 时域.</span></p></li><li><p><span>卷积积分法：与第二章不同，可以利用复频域求解卷积积分.</span></p></li><li><p><span>系统函数法：主要用于求解多个系统的级联、并联与反馈联结.</span></p></li></ul></li></ul><p>&nbsp;</p><h3 id='13--离散-lti-系统'><span>1.3  离散 LTI 系统</span></h3><p><strong><span>离散 LTI 系统</span></strong><span>（DLTIS）：等效为求解差分方程（</span><del><span>或求和方程</span></del><span>）</span></p><ul><li><p><span>高中用的初等方法</span></p><ul><li><p><span>数值迭代法：适用于计算机求解，或手算前几项. 无法求出通项公式.</span></p></li><li><p><span>数学归纳法：通过数值迭代，猜出通项公式，然后用数学归纳法证明.</span></p></li><li><p><span>数列配凑法：配凑成等差数列或等比数列的形式，从而一步一步求解.</span></p></li></ul></li><li><p><span>更便捷的初等方法</span></p><ul><li><p><span>生成函数法：利用递推公式、母函数、幂级数展开.</span></p></li><li><p><span>特征方程法：适用于齐次方程，求通解.</span></p></li><li><p><span>常数变易法：适用于非齐次方程，求特解.</span></p></li></ul></li><li><p><span>直接利用显式公式</span></p><ul><li><p><span>二项齐次递推式</span></p></li><li><p><span>三项齐次递推式</span></p></li></ul></li><li><p><span>第五章：</span><strong><span>时域分析</span></strong></p><ul><li><p><span>经典时域法：零输入响应 + 零状态响应.</span></p></li><li><p><span>卷积求和法：单位样值响应、卷积和.</span></p></li></ul></li><li><p><span>第六章： </span><strong><span>z 域分析</span></strong></p><ul><li><p><span>z 变换法：时域 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-15-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-15-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ra </script><span> z 域 </span><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="2.262ex" height="1.181ex" role="img" focusable="false" viewBox="0 -511 1000 522" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -0.025ex;"><defs><path id="MJX-15-TEX-N-2192" d="M56 237T56 250T70 270H835Q719 357 692 493Q692 494 692 496T691 499Q691 511 708 511H711Q720 511 723 510T729 506T732 497T735 481T743 456Q765 389 816 336T935 261Q944 258 944 250Q944 244 939 241T915 231T877 212Q836 186 806 152T761 85T740 35T732 4Q730 -6 727 -8T711 -11Q691 -11 691 0Q691 7 696 25Q728 151 835 230H70Q56 237 56 250Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><use data-c="2192" xlink:href="#MJX-15-TEX-N-2192"></use></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">→</mo></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ra </script><span> 时域.</span></p></li><li><p><span>卷积和法：与第五章不同，可以利用 z 域求解卷积和.</span></p></li><li><p><span>系统函数：主要用于求解多个系统的级联、并联与反馈联结.</span></p></li></ul></li></ul><p>&nbsp;</p><h3 id='14--其它相关说明'><span>1.4  其它相关说明</span></h3><p><span>以上只是主线问题，这门课还需要学习其它相关知识，如系统的分类、冲激函数的性质、卷积的性质、常用的卷积、傅里叶变换的性质、常用的傅里叶变换、频率谱线、抽样定理、无失真系统、低通滤波器、系统的因果性与稳定性等等，具体请见 </span><a href='#2--重点内容'><span>2  重点内容</span></a><span>、</span><a href='#3--知识专题'><span>3  知识专题</span></a><span>、</span><a href='https://sleepcloudmx.github.io/Electronics/信号与线性系统/信号与系统 (1).html'><span>信号与系统 (1)</span></a><span>、</span><a href='https://sleepcloudmx.github.io/Electronics/信号与线性系统/信号与系统 (2).html'><span>信号与系统 (2)</span></a><span>.</span></p><p><span>这里想指出，</span><u><span>离散和连续并不是毫不相关的</span></u><span>：</span></p><ul><li><p><span>实际应用中的相互转换</span></p><ul><li><p><span>连续信号采样后为离散信号.</span></p></li><li><p><span>离散信号可恢复为连续信号.</span></p></li></ul></li><li><p><span>理论分析中的相互转换</span></p><ul><li><p><span>连续信号可用离散信号近似，从而使用离散信号的方式处理（如数值分析，计算机迭代）</span></p></li><li><p><span>离散信号可表示为连续信号，从而使用连续信号的方法分析（如傅氏变换、拉氏变换）</span></p></li></ul></li><li><p><span>本影演算中的相互转换</span></p><ul><li><p><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="23.526ex" height="6.354ex" role="img" focusable="false" viewBox="0 -1562.5 10398.5 2808.5" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -2.819ex;"><defs><path id="MJX-16-TEX-N-394" d="M51 0Q46 4 46 7Q46 9 215 357T388 709Q391 716 416 716Q439 716 444 709Q447 705 616 357T786 7Q786 4 781 0H51ZM507 344L384 596L137 92L383 91H630Q630 93 507 344Z"></path><path id="MJX-16-TEX-I-1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path><path id="MJX-16-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-16-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-16-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-16-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-16-TEX-LO-2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z"></path><path id="MJX-16-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-16-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-16-TEX-N-221E" d="M55 217Q55 305 111 373T254 442Q342 442 419 381Q457 350 493 303L507 284L514 294Q618 442 747 442Q833 442 888 374T944 214Q944 128 889 59T743 -11Q657 -11 580 50Q542 81 506 128L492 147L485 137Q381 -11 252 -11Q166 -11 111 57T55 217ZM907 217Q907 285 869 341T761 397Q740 397 720 392T682 378T648 359T619 335T594 310T574 285T559 263T548 246L543 238L574 198Q605 158 622 138T664 94T714 61T765 51Q827 51 867 100T907 217ZM92 214Q92 145 131 89T239 33Q357 33 456 193L425 233Q364 312 334 337Q285 380 233 380Q171 380 132 331T92 214Z"></path><path id="MJX-16-TEX-N-21" d="M78 661Q78 682 96 699T138 716T180 700T199 661Q199 654 179 432T158 206Q156 198 139 198Q121 198 119 206Q118 209 98 431T78 661ZM79 61Q79 89 97 105T141 121Q164 119 181 104T198 61Q198 31 181 16T139 1Q114 1 97 16T79 61Z"></path><path id="MJX-16-TEX-N-64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><use data-c="394" xlink:href="#MJX-16-TEX-N-394"></use></g><g data-mml-node="mi" transform="translate(833,0)"><use data-c="1D453" xlink:href="#MJX-16-TEX-I-1D453"></use></g><g data-mml-node="mo" transform="translate(1383,0)"><use data-c="28" xlink:href="#MJX-16-TEX-N-28"></use></g><g data-mml-node="mi" transform="translate(1772,0)"><use data-c="1D465" xlink:href="#MJX-16-TEX-I-1D465"></use></g><g data-mml-node="mo" transform="translate(2344,0)"><use data-c="29" xlink:href="#MJX-16-TEX-N-29"></use></g><g data-mml-node="mo" transform="translate(3010.8,0)"><use data-c="3D" xlink:href="#MJX-16-TEX-N-3D"></use></g><g data-mml-node="mstyle" transform="translate(4066.6,0)"><g data-mml-node="munderover"><g data-mml-node="mo"><use data-c="2211" xlink:href="#MJX-16-TEX-LO-2211"></use></g><g data-mml-node="TeXAtom" transform="translate(58,-1087.9) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-16-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(600,0)"><use data-c="3D" xlink:href="#MJX-16-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(1378,0)"><use data-c="31" xlink:href="#MJX-16-TEX-N-31"></use></g></g><g data-mml-node="mi" transform="translate(368.4,1150) scale(0.707)"><use data-c="221E" xlink:href="#MJX-16-TEX-N-221E"></use></g></g><g data-mml-node="mstyle" transform="translate(1610.7,0)"><g data-mml-node="mfrac"><g data-mml-node="mn" transform="translate(409,676)"><use data-c="31" xlink:href="#MJX-16-TEX-N-31"></use></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-16-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(600,0)"><use data-c="21" xlink:href="#MJX-16-TEX-N-21"></use></g></g><rect width="1078" height="60" x="120" y="220"></rect></g></g><g data-mml-node="mfrac" transform="translate(2928.7,0)"><g data-mml-node="mrow" transform="translate(220,710)"><g data-mml-node="msup"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="64" xlink:href="#MJX-16-TEX-N-64"></use></g></g></g><g data-mml-node="TeXAtom" transform="translate(589,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-16-TEX-I-1D45B"></use></g></g></g><g data-mml-node="mi" transform="translate(1063.3,0)"><use data-c="1D453" xlink:href="#MJX-16-TEX-I-1D453"></use></g><g data-mml-node="mo" transform="translate(1613.3,0)"><use data-c="28" xlink:href="#MJX-16-TEX-N-28"></use></g><g data-mml-node="mi" transform="translate(2002.3,0)"><use data-c="1D465" xlink:href="#MJX-16-TEX-I-1D465"></use></g><g data-mml-node="mo" transform="translate(2574.3,0)"><use data-c="29" xlink:href="#MJX-16-TEX-N-29"></use></g></g><g data-mml-node="mrow" transform="translate(884,-686)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="64" xlink:href="#MJX-16-TEX-N-64"></use></g></g></g><g data-mml-node="msup" transform="translate(556,0)"><g data-mml-node="mi"><use data-c="1D465" xlink:href="#MJX-16-TEX-I-1D465"></use></g><g data-mml-node="TeXAtom" transform="translate(605,289) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-16-TEX-I-1D45B"></use></g></g></g></g><rect width="3163.3" height="60" x="120" y="220"></rect></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi mathvariant="normal">Δ</mi><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="true" scriptlevel="0"><munderover><mo data-mjx-texclass="OP">∑</mo><mrow data-mjx-texclass="ORD"><mi>n</mi><mo>=</mo><mn>1</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mstyle displaystyle="true" scriptlevel="0"><mfrac><mn>1</mn><mrow><mi>n</mi><mo>!</mo></mrow></mfrac></mstyle><mfrac><mrow><msup><mrow data-mjx-texclass="ORD"><mrow data-mjx-texclass="ORD"><mi mathvariant="normal">d</mi></mrow></mrow><mrow data-mjx-texclass="ORD"><mi>n</mi></mrow></msup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mrow data-mjx-texclass="ORD"><mrow data-mjx-texclass="ORD"><mi mathvariant="normal">d</mi></mrow></mrow><msup><mi>x</mi><mrow data-mjx-texclass="ORD"><mi>n</mi></mrow></msup></mrow></mfrac></mstyle></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \Delta f(x) = \nsum \dfrac{1}{n!} \dv[n]{f(x)}{x} </script><span>.</span></p></li><li><p><mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="29.383ex" height="6.354ex" role="img" focusable="false" viewBox="0 -1562.5 12987.4 2808.5" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -2.819ex;"><defs><path id="MJX-17-TEX-N-64" d="M376 495Q376 511 376 535T377 568Q377 613 367 624T316 637H298V660Q298 683 300 683L310 684Q320 685 339 686T376 688Q393 689 413 690T443 693T454 694H457V390Q457 84 458 81Q461 61 472 55T517 46H535V0Q533 0 459 -5T380 -11H373V44L365 37Q307 -11 235 -11Q158 -11 96 50T34 215Q34 315 97 378T244 442Q319 442 376 393V495ZM373 342Q328 405 260 405Q211 405 173 369Q146 341 139 305T131 211Q131 155 138 120T173 59Q203 26 251 26Q322 26 373 103V342Z"></path><path id="MJX-17-TEX-I-1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path><path id="MJX-17-TEX-N-28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path><path id="MJX-17-TEX-I-1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path><path id="MJX-17-TEX-N-29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path><path id="MJX-17-TEX-N-3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path><path id="MJX-17-TEX-LO-2211" d="M60 948Q63 950 665 950H1267L1325 815Q1384 677 1388 669H1348L1341 683Q1320 724 1285 761Q1235 809 1174 838T1033 881T882 898T699 902H574H543H251L259 891Q722 258 724 252Q725 250 724 246Q721 243 460 -56L196 -356Q196 -357 407 -357Q459 -357 548 -357T676 -358Q812 -358 896 -353T1063 -332T1204 -283T1307 -196Q1328 -170 1348 -124H1388Q1388 -125 1381 -145T1356 -210T1325 -294L1267 -449L666 -450Q64 -450 61 -448Q55 -446 55 -439Q55 -437 57 -433L590 177Q590 178 557 222T452 366T322 544L56 909L55 924Q55 945 60 948Z"></path><path id="MJX-17-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-17-TEX-N-30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path><path id="MJX-17-TEX-N-221E" d="M55 217Q55 305 111 373T254 442Q342 442 419 381Q457 350 493 303L507 284L514 294Q618 442 747 442Q833 442 888 374T944 214Q944 128 889 59T743 -11Q657 -11 580 50Q542 81 506 128L492 147L485 137Q381 -11 252 -11Q166 -11 111 57T55 217ZM907 217Q907 285 869 341T761 397Q740 397 720 392T682 378T648 359T619 335T594 310T574 285T559 263T548 246L543 238L574 198Q605 158 622 138T664 94T714 61T765 51Q827 51 867 100T907 217ZM92 214Q92 145 131 89T239 33Q357 33 456 193L425 233Q364 312 334 337Q285 380 233 380Q171 380 132 331T92 214Z"></path><path id="MJX-17-TEX-N-2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path><path id="MJX-17-TEX-N-31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path id="MJX-17-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-17-TEX-N-394" d="M51 0Q46 4 46 7Q46 9 215 357T388 709Q391 716 416 716Q439 716 444 709Q447 705 616 357T786 7Q786 4 781 0H51ZM507 344L384 596L137 92L383 91H630Q630 93 507 344Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mstyle"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(220,710)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="64" xlink:href="#MJX-17-TEX-N-64"></use></g></g></g><g data-mml-node="mi" transform="translate(556,0)"><use data-c="1D453" xlink:href="#MJX-17-TEX-I-1D453"></use></g><g data-mml-node="mo" transform="translate(1106,0)"><use data-c="28" xlink:href="#MJX-17-TEX-N-28"></use></g><g data-mml-node="mi" transform="translate(1495,0)"><use data-c="1D465" xlink:href="#MJX-17-TEX-I-1D465"></use></g><g data-mml-node="mo" transform="translate(2067,0)"><use data-c="29" xlink:href="#MJX-17-TEX-N-29"></use></g></g><g data-mml-node="mrow" transform="translate(884,-686)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="64" xlink:href="#MJX-17-TEX-N-64"></use></g></g></g><g data-mml-node="mi" transform="translate(556,0)"><use data-c="1D465" xlink:href="#MJX-17-TEX-I-1D465"></use></g></g><rect width="2656" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(3173.8,0)"><use data-c="3D" xlink:href="#MJX-17-TEX-N-3D"></use></g><g data-mml-node="mstyle" transform="translate(4229.6,0)"><g data-mml-node="munderover"><g data-mml-node="mo"><use data-c="2211" xlink:href="#MJX-17-TEX-LO-2211"></use></g><g data-mml-node="TeXAtom" transform="translate(58,-1087.9) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-17-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(600,0)"><use data-c="3D" xlink:href="#MJX-17-TEX-N-3D"></use></g><g data-mml-node="mn" transform="translate(1378,0)"><use data-c="30" xlink:href="#MJX-17-TEX-N-30"></use></g></g><g data-mml-node="mi" transform="translate(368.4,1150) scale(0.707)"><use data-c="221E" xlink:href="#MJX-17-TEX-N-221E"></use></g></g><g data-mml-node="mstyle" transform="translate(1610.7,0)"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(220,710)"><g data-mml-node="mo"><use data-c="28" xlink:href="#MJX-17-TEX-N-28"></use></g><g data-mml-node="mo" transform="translate(389,0)"><use data-c="2212" xlink:href="#MJX-17-TEX-N-2212"></use></g><g data-mml-node="mn" transform="translate(1167,0)"><use data-c="31" xlink:href="#MJX-17-TEX-N-31"></use></g><g data-mml-node="msup" transform="translate(1667,0)"><g data-mml-node="mo"><use data-c="29" xlink:href="#MJX-17-TEX-N-29"></use></g><g data-mml-node="mi" transform="translate(422,363) scale(0.707)"><use data-c="1D45B" xlink:href="#MJX-17-TEX-I-1D45B"></use></g></g></g><g data-mml-node="mrow" transform="translate(340.4,-686)"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-17-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(822.2,0)"><use data-c="2B" xlink:href="#MJX-17-TEX-N-2B"></use></g><g data-mml-node="mn" transform="translate(1822.4,0)"><use data-c="31" xlink:href="#MJX-17-TEX-N-31"></use></g></g><rect width="2763.3" height="60" x="120" y="220"></rect></g></g><g data-mml-node="msup" transform="translate(4613.9,0)"><g data-mml-node="mi"><use data-c="394" xlink:href="#MJX-17-TEX-N-394"></use></g><g data-mml-node="TeXAtom" transform="translate(866,413) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><use data-c="1D45B" xlink:href="#MJX-17-TEX-I-1D45B"></use></g><g data-mml-node="mo" transform="translate(600,0)"><use data-c="2B" xlink:href="#MJX-17-TEX-N-2B"></use></g><g data-mml-node="mn" transform="translate(1378,0)"><use data-c="31" xlink:href="#MJX-17-TEX-N-31"></use></g></g></g><g data-mml-node="mi" transform="translate(6857.9,0)"><use data-c="1D453" xlink:href="#MJX-17-TEX-I-1D453"></use></g><g data-mml-node="mo" transform="translate(7407.9,0)"><use data-c="28" xlink:href="#MJX-17-TEX-N-28"></use></g><g data-mml-node="mi" transform="translate(7796.9,0)"><use data-c="1D465" xlink:href="#MJX-17-TEX-I-1D465"></use></g><g data-mml-node="mo" transform="translate(8368.9,0)"><use data-c="29" xlink:href="#MJX-17-TEX-N-29"></use></g></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mrow data-mjx-texclass="ORD"><mrow data-mjx-texclass="ORD"><mi mathvariant="normal">d</mi></mrow></mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><mrow><mrow data-mjx-texclass="ORD"><mrow data-mjx-texclass="ORD"><mi mathvariant="normal">d</mi></mrow></mrow><mi>x</mi></mrow></mfrac><mo>=</mo><mstyle displaystyle="true" scriptlevel="0"><munderover><mo data-mjx-texclass="OP">∑</mo><mrow data-mjx-texclass="ORD"><mi>n</mi><mo>=</mo><mn>0</mn></mrow><mi mathvariant="normal">∞</mi></munderover><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>n</mi></msup></mrow><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></mfrac></mstyle><msup><mi mathvariant="normal">Δ</mi><mrow data-mjx-texclass="ORD"><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mstyle></mstyle></math></mjx-assistive-mml></mjx-container><script type="math/tex"> \ddv{f(x)}{x} = \nosum \dfrac{(-1)^n}{n+1} \Delta^{n+1} f(x) </script><span>.</span></p></li></ul></li></ul><p>&nbsp;</p><h3 id='15--相关书籍推荐'><span>1.5  相关书籍推荐</span></h3><ul><li><p><span>信号与系统教材</span></p><ul><li><p><span>季策、蒋定德、宋清阳、于尧的《信号与线性系统分析》</span></p></li><li><p><strong><span>郑君里、应启珩、杨为理的《信号与系统》</span></strong></p></li><li><p><span>奥本海姆的《信号与系统》</span></p></li></ul></li><li><p><span>复变函数教材</span></p><ul><li><p><span>特里斯坦·尼达姆的《可视化复分析》</span></p></li><li><p><span>Lars Ahlfors 的《复分析》</span></p></li><li><p><strong><span>东大的《复变函数与积分变换》</span></strong></p></li></ul></li><li><p><span>傅里叶分析</span></p><ul><li><p><a href='F:\Math\SMM\SMM Fourier Series In Control Theory (Komornik V  Loreti P 2005)(Isbn 0387223835)(229S).pdf'><span>SMM Fourier Series In Control Theory (Komornik V  Loreti P 2005)(Isbn 0387223835)(229S).pdf</span></a><span> </span></p></li><li><p><a href='F:\Math\GTM\(GTM64)Fourier Series A Modern Introduction Volume 1.pdf'><span>(GTM64)Fourier Series A Modern Introduction Volume 1.pdf</span></a><span> </span></p></li><li><p><a href='F:\Math\GTM\(GTM85)Fourier Series A Modern Introduction Volume 2.pdf'><span>(GTM85)Fourier Series A Modern Introduction Volume 2.pdf</span></a><span> </span></p></li><li><p><a href='F:\Math\GTM\(GTM186)Fourier Analysis on Number Fields.pdf'><span>(GTM186)Fourier Analysis on Number Fields.pdf</span></a><span> </span></p></li><li><p><a href='F:\Math\GTM\(GTM223)Fourier Analysis and Its Applications.pdf'><span>(GTM223)Fourier Analysis and Its Applications.pdf</span></a><span> </span></p></li><li><p><a href='F:\Math\GTM\(GTM249)Classical Fourier Analysis.pdf'><span>(GTM249)Classical Fourier Analysis.pdf</span></a><span> </span></p></li><li><p><a href='F:\Math\GTM\(GTM250)Modern Fourier Analysis.pdf'><span>(GTM250)Modern Fourier Analysis.pdf</span></a><span> </span></p></li></ul></li><li><p><strong><span>拉普拉斯变换： </span><a href='F:\Math\UTM\UTM Schiff J L Laplace Transformation Theory And Applications (1999)(245S).pdf'><span>UTM Schiff J L Laplace Transformation Theory And Applications (1999)(245S).pdf</span></a></strong><span> </span></p></li><li><p><span>差分方程</span></p><ul><li><p><a href='F:\Math\方程\差分方程\差分方程及其应用.pdf'><span>差分方程及其应用.pdf</span></a><span> </span></p></li><li><p><strong><a href='F:\Math\方程\差分方程\差分方程中的Lagrange定理.刘培杰.pdf'><span>差分方程中的Lagrange定理.刘培杰.pdf</span></a></strong><span> </span></p></li></ul></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2 id='2--重点内容'><span>2  重点内容</span></h2><p><span>以下只列出比较重要的内容，其余可看书了解即可；拓展内容这里略过.</span></p><p><span>这里的 &quot;重要程度&quot; 包含了需要掌握的程度，因此标的星数少也可能非常重要（比如系统函数），只是容易掌握.（可能也比较主观）</span></p><h3 id='21--信号与线性系统'><span>2.1  信号与线性系统</span></h3><figure class='table-figure'><table><thead><tr><th><span>知识内容</span></th><th><span>重要程度</span></th></tr></thead><tbody><tr><td><span>常见的信号及其运算</span></td><td>⭐️</td></tr><tr><td><span>冲激函数的性质</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>系统的分类</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>线性时不变系统</span></td><td>⭐️<span> </span>⭐️</td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='22--连续的时域分析'><span>2.2  连续的时域分析</span></h3><figure class='table-figure'><table><thead><tr><th><span>知识内容</span></th><th><span>重要程度</span></th></tr></thead><tbody><tr><td><span>经典时域分析与传输算子</span></td><td>⭐️</td></tr><tr><td><span>零输入响应与零状态响应</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>卷积积分的性质及其结论</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='23--连续的频域分析'><span>2.3  连续的频域分析</span></h3><figure class='table-figure'><table><thead><tr><th><span>知识内容</span></th><th><span>重要程度</span></th></tr></thead><tbody><tr><td><span>傅里叶级数的计算</span></td><td>⭐️</td></tr><tr><td><span>傅里叶变换的性质</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>常用的傅里叶变换</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>周期信号傅氏变换</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>时域信号抽样定理</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>系统函数频域分析、无失真传输、</span><br /><span>理想低通滤波器、调制与多路复用</span></td><td>⭐️</td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='24--连续复频域分析'><span>2.4  连续复频域分析</span></h3><figure class='table-figure'><table><thead><tr><th><span>知识内容</span></th><th><span>重要程度</span></th></tr></thead><tbody><tr><td><span>拉普拉斯变换的性质</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>常用的拉普拉斯变换</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>系统函数与系统框图</span></td><td>⭐️</td></tr><tr><td><span>零极点时域频域影响</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>系统稳定性判断条件</span></td><td>⭐️</td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='25--离散的时域分析'><span>2.5  离散的时域分析</span></h3><figure class='table-figure'><table><thead><tr><th><span>知识内容</span></th><th><span>重要程度</span></th></tr></thead><tbody><tr><td><span>常用离散信号性质与运算</span></td><td>⭐️</td></tr><tr><td><span>零输入响应与零状态响应</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>序列卷积和的性质与求解</span></td><td>⭐️<span> </span>⭐️</td></tr></tbody></table></figure><p>&nbsp;</p><h3 id='26--离散的-z-域分析'><span>2.6  离散的 z 域分析</span></h3><figure class='table-figure'><table><thead><tr><th><span>知识内容</span></th><th><span>重要程度</span></th></tr></thead><tbody><tr><td><span>Z 变换收敛域</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>常用的 Z 变换</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>Z 变换的性质</span></td><td>⭐️<span> </span>⭐️<span> </span>⭐️</td></tr><tr><td><span>Z 逆变换求解</span></td><td>⭐️<span> </span>⭐️</td></tr><tr><td><span>Z 域求解分析</span></td><td>⭐️</td></tr></tbody></table></figure><p>&nbsp;</p><h2 id='3--知识专题'><span>3  知识专题</span></h2><h3 id='31--连续的时域分析'><span>3.1  连续的时域分析</span></h3><h4 id='311--冲激函数的性质'><span>3.1.1  冲激函数的性质</span></h4><h4 id='312--卷积积分的求解'><span>3.1.2  卷积积分的求解</span></h4><h4 id='313--常用的卷积积分'><span>3.1.3  常用的卷积积分</span></h4><h4 id='314--零状态与零输入'><span>3.1.4  零状态与零输入</span></h4><p>&nbsp;</p><h3 id='32--连续的频域分析'><span>3.2  连续的频域分析</span></h3><h4 id='321--傅氏变换的性质'><span>3.2.1  傅氏变换的性质</span></h4><h4 id='322--常用的傅氏变换'><span>3.2.2  常用的傅氏变换</span></h4><h4 id='323--系统傅里叶分析'><span>3.2.3  系统傅里叶分析</span></h4><h4 id='324--时域的抽样定理'><span>3.2.4  时域的抽样定理</span></h4><p>&nbsp;</p><h3 id='33--连续复频域分析'><span>3.3  连续复频域分析</span></h3><h4 id='331--拉氏变换的性质'><span>3.3.1  拉氏变换的性质</span></h4><h4 id='332--常用的拉氏变换'><span>3.3.2  常用的拉氏变换</span></h4><h4 id='333--系统复频域分析'><span>3.3.3  系统复频域分析</span></h4><h4 id='334--系统稳定性判断'><span>3.3.4  系统稳定性判断</span></h4><p>&nbsp;</p><h3 id='34--离散的时域分析'><span>3.4  离散的时域分析</span></h3><h4 id='341--离散信号与系统'><span>3.4.1  离散信号与系统</span></h4><h4 id='342--零状态与零输入'><span>3.4.2  零状态与零输入</span></h4><h4 id='343--单位的样值响应'><span>3.4.3  单位的样值响应</span></h4><h4 id='344--离散序列卷积和'><span>3.4.4  离散序列卷积和</span></h4><p>&nbsp;</p><h3 id='35--离散的-z-域分析'><span>3.5  离散的 z 域分析</span></h3><h4 id='351--常用的-z-变换'><span>3.5.1  常用的 z 变换</span></h4><h4 id='352---z-变换的性质'><span>3.5.2   z 变换的性质</span></h4><h4 id='353---z-逆变换求解'><span>3.5.3   z 逆变换求解</span></h4><h4 id='354---z-域分析求解'><span>3.5.4   z 域分析求解</span></h4><p>&nbsp;</p></div></div>
+</body>
+</html>
